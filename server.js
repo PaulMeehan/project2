@@ -46,6 +46,6 @@ db.sequelize.sync({ force: process.env.FORCE_SYNC === 'true' }).then(() => {
   }
 
   app.listen(PORT, () => {
-    console.log(`Listening on port: ${PORT}`);
+    console.log(`App listening on port: ${PORT}`);
   });  
 });
