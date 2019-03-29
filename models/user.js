@@ -67,5 +67,13 @@ module.exports = function (sequelize, DataTypes) {
     return values;
   };
 
+  User.associate = function (models) {
+    models.User.belongsTo(models.Store, {
+      foreignKey: {
+        allowNull: true
+      }
+    });
+  };
+
   return User;
 };
