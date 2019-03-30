@@ -29,7 +29,7 @@
   },
 
   "rules": {
-    "accessor-pairs": "warning",
+    "accessor-pairs": "error",
     "arrow-spacing": ["warning", { "before": true, "after": true }],
     "block-spacing": ["warning", "always"],
     "brace-style": ["warning", "1tbs", { "allowSingleLine": true }],
