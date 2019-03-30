@@ -2,14 +2,22 @@
 
 <div id="main-container" class="container">
   <div class="jumbotron text-center header-wrap" align="center">
-    <p class="lead">Welcome to <strong>Sample App</strong></p>
-    <hr class="my-4">
+    <p class="lead" id="Shop_local"><strong>Shop Local</strong></p>
+    <br>
+
     <div>
       {{#if isloggedin}}
         You are logged in as {{user.firstName}}
         <a href="/logout"> <button type="btn" class="btn">Logout</button></a>
       {{else}}
-        <p>You need to log in to use this app.</p>
+        <br>
+        <p>Shopally is a proud supporter of local businesses. This application allows you to search for items and products, based on a your location. Shopally will then find businesses with in your area based on your search query.</p>
+        <br>
+        <p>Looking for something but can't find the word? Use the tags feature and choose keywords to help refine your search</p>
+        <br>
+        <p>Log in to start shopping! Not a member? No problem, simply make a free acount.</p>
+        <br>
+        <button id="btn2">Login</button> <button id="btn3">Register for free</button>
       {{/if}}
       <h5 id="login-err-msg"></h5>
     </div>

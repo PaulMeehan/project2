@@ -1,5 +1,5 @@
 body {
-  color: white;
+  background: url('https://image.freepik.com/free-photo/blurred-background-store-shopping-mall-blur-background-with-bokeh-vintage-filtered-image_1253-1583.jpg');
   background-size: cover;
   height:100%
 }
@@ -13,10 +13,27 @@ body {
 }
 
 .btn {
-  color:white;
+  color: #CAEBF2;
   background:#cadde1;
   border: 1px solid white;
 }
+
+#Shop_local{
+  font-size: 60px;
+  color: #79D0A8;
+  float: left;
+}
+
+/* #btn2{
+  background-color:#42d7f4;
+  color: white;
+}
+
+#btn3{
+  background-color: #CAEBF2;
+  color: white;
+} */
+
 
 #user-form, .header-wrap, #create-form, .create-user-wrap {
   padding: 20px;
@@ -38,11 +55,10 @@ body {
 .container {
   padding-bottom: 2%;
   margin-top: 10%;
-  background: rgba(86, 101, 115,.6);
   height:100%;
   border-radius: .25rem;
   margin-bottom: 2%;
-  width: 600px;
+  width: 1000px;
 }
 
 [data-useremail="true"] {
@@ -64,3 +80,28 @@ body {
 hr {
   background-color: #fff !important;
 }
+
+.splitting .char {
+  animation: slide-in 1s cubic-bezier(.5, 0, .5, 1) both;
+  animation-delay: calc(60ms * var(--char-index));
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateY(-1em) rotate(-.5turn) scale(0.5);
+    opacity: 0;
+  }
+}
+
+#logo {
+  font-size: 30px;
+  font-weight: bold;
+  color: #A9A9A9
+}
+
+#navbar{
+  height: 100px;
+  opacity: .90;
+  background-color: #CAEBF2
+}
+

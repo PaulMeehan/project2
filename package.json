@@ -50,7 +50,9 @@
     "mysql2": "^1.6.5",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
-    "sequelize": "^4.3.1"
+    "react-flip-toolkit": "^6.5.7",
+    "sequelize": "^4.3.1",
+    "splitting": "^1.0.6"
   },
   "devDependencies": {
     "chai": "^4.1.2",
