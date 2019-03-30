@@ -3,25 +3,21 @@ module.exports = (db) => {
     searchTags: (req, res) => {
       let conditions = req.params.query.parse('&');
       let tagID = '(';
+      let tagCount = 0;
       for (let i = 0; i < conditions.length; i++) {
         let statement = conditions[i].parse('=');
         switch (statement[0]) {
           case 't':
             tagID += statement[1];
+            tagCount++;
             break;
           default:
             break;
         }
       }
       tagID += ')';
-    //   db.Inventory_Tags.findAll({
-    //     include: [
-    //       {
-    //         model: db.Inventory
-    //       }
-    //     ]
-
-    //   })
+      // Literal sequelize query to get all items containing all tags
+      // db.sequelize.query(``)
     },
     createItem: (req, res) => {
       db.Inventory.sync().then(() => {
