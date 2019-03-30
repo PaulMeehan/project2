@@ -6,7 +6,7 @@ module.exports = (db) => {
     password: process.env.ADMIN_USER_PWD,
     isAdmin: true,
     isStore: true,
-    storeId: 1
+    StoreId: 1
   });
   db.User.create({
     firstName: 'Jane',
