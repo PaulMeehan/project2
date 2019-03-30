@@ -17,8 +17,10 @@ module.exports = (db) => {
       }
       tagID += ')';
       // Literal sequelize query to get all items containing all tags
-      // db.sequelize.query(``)
-    },
+    //   db.sequelize.query(`select itemID from (select itemID, COUNT(tagID) as myCount  from Inventory_Tags 
+    //                     where tagID in ${tagID} GROUP BY itemID) as temp
+    //                     where myCount =${tagCount}`);
+    // },
     createItem: (req, res) => {
       db.Inventory.sync().then(() => {
         return db.Inventory.create({
@@ -46,14 +48,13 @@ module.exports = (db) => {
       }).catch(error => {
         res.status(400).json({ message: error.message });
       });
-    }//,
+    } //    ,
     // updateTags: (req, res) => {
     //   for (let i = 0; i < req.body.addTags.length; i++) {
     //     db.Inventory_Tags.create({
     //       itemID: req.params.id,
-          
     //     })
     //   }
     // }
-  };
-};
+  }
+}
