@@ -16,10 +16,24 @@ module.exports = (db) => {
         }
       }
       tagID += ')';
-      // Literal sequelize query to get all items containing all tags
-    //   db.sequelize.query(`select itemID from (select itemID, COUNT(tagID) as myCount  from Inventory_Tags 
-    //                     where tagID in ${tagID} GROUP BY itemID) as temp
-    //                     where myCount =${tagCount}`);
+      //    Literal sequelize query to get all itemIDs containing all tags
+      db.sequelize.query(`select itemID from (select itemID, COUNT(tagID) as myCount  from Inventory_Tags 
+                        where tagID in ${tagID} GROUP BY itemID) as temp
+                        where myCount =${tagCount}`)
+      .then(response => {
+        const itemIDs = [];
+        for (let i =0; i < response.length; i++) {
+            itemID.push(response[i].id);
+        }
+        findAll({
+            where: {
+                id: {
+                    $in: 
+                }
+            }
+        })
+      });
+      
     },
     createItem: (req, res) => {
       db.Inventory.sync().then(() => {
