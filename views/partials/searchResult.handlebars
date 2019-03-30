@@ -1,0 +1,18 @@
+
+<h1>{{search results}}</h1>
+
+<ul>
+{{#each item }}
+  <li>
+    <p>ID: {{id}}</p>
+    <p>Item: {{description}}</p>
+    <p>Store Name: {{storeID}}</p>
+    <p>Category: {{category}}</p>
+    <p>Price: {{price}}</p>
+  <li>
+
+	<button class="change-sleep" data-id="{{id}}" data-newsleep="{{save}}"></button>
+
+	<button class="delete-cat" data-id="{{this.id}}">DELETE!</button>
+{{/each}}
+</ul>
