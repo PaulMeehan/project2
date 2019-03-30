@@ -67,5 +67,9 @@ module.exports = function (sequelize, DataTypes) {
     return values;
   };
 
+  User.associate = (models) => {
+    User.belongsTo(models.Store);
+  };
+
   return User;
 };

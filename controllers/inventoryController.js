@@ -5,7 +5,12 @@ module.exports = (db) => {
     search: (req, res) => {
       const query = req.params.query;
       let conditions;
-      let search = { where: {} };
+      let search = {
+        where: {},
+        include: [{
+          model: db.Store
+        }]
+      };
       let where = search.where;
       let tagIDs, storeId, category, price;
       //    if there are no restrictions, just get the database
@@ -28,7 +33,7 @@ module.exports = (db) => {
               price = statement[1];
               break;
             default:
-              res.status(400).json({ message: "queries must be of the form '/api/inventory/search/t={tag1},{tag2}&storeId={storeId}&c={category}'", notes: ['All values are optional'] });
+              return res.status(400).json({ message: "queries must be of the form '/api/inventory/search/t={tag1},{tag2}&storeId={storeId}&c={category}'", notes: ['All values are optional'] });
               break;
           }
         }
@@ -78,34 +83,62 @@ module.exports = (db) => {
         });
       }
     },
+    //  returns a callback with the storeId associated with the user
+    authenticate: (req, callback) => {
+      if (req.isAuthenticated()) {
+        db.User.findOne({
+          where: {
+            id: req.session.passport.user.id
+          }
+        }).then(() => {
+          const user = req.session.passport.user;
+          if (user.isStore) {
+            callback(user.StoreId);
+          } else {
+            res.status(400).json({ message: 'Error: user must be associated with a store to manage inventory' });
+          }
+        });
+      } else {
+        //  user isn't logged in
+        res.status(400).json({ message: 'Error: user must logged in to manage inventory' });
+      }
+    },
+
     createItem: (req, res) => {
-      db.Inventory.sync().then(() => {
-        return db.Inventory.create({
+    //  only certain logged in users can create items
+      authenticate(req, function (storeId) {
+        db.Inventory.create({
           itemName: req.body.itemName,
           category: req.body.category,
           description: req.body.description,
           price: req.body.price,
-          StoreId: req.body.storeId
-        }).then(() => {
-          res.status(200).json({ message: 'Inventory Added' });
+          storeId: storeId
+        }).then(inventory => {
+          res.status(200).json(inventory);
         }).catch(error => {
           res.status(400).json({ message: error.message });
         });
       });
     },
+
     updateItem: (req, res) => {
-      db.Inventory.update({
-        itemName: req.body.itemName,
-        category: req.body.category,
-        description: req.body.description,
-        price: req.body.price,
-        StoreId: req.body.storeId
-      }, {
-        where: { id: req.params.id }
-      }).then(() => {
-        res.status(200).json({ message: 'Inventory Updated' });
-      }).catch(error => {
-        res.status(400).json({ message: error.message });
+      authenticate(req, function (storeId) {
+        db.Inventory.update({
+          itemName: req.body.itemName,
+          category: req.body.category,
+          description: req.body.description,
+          price: req.body.price
+        }, {
+          where: {
+            id: req.params.id,
+            //  Should only be able to update items in your own store
+            StoreId: storeId
+          }
+        }).then(() => {
+          res.status(200).json({ message: 'Inventory Updated' });
+        }).catch(error => {
+          res.status(400).json({ message: error.message });
+        });
       });
     } //    ,
     // updateTags: (req, res) => {

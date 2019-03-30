@@ -4,7 +4,9 @@ module.exports = (db) => {
     lastName: 'Gates',
     email: 'j@g.co',
     password: process.env.ADMIN_USER_PWD,
-    isAdmin: true
+    isAdmin: true,
+    isStore: true,
+    storeId: 1
   });
   db.User.create({
     firstName: 'Jane',
@@ -21,9 +23,10 @@ module.exports = (db) => {
       itemName: 'bike',
       category: 'sports',
       description: 'A beautiful city bike',
-      price: 125.99
+      price: 125.99,
+      StoreId: 1
     }).then(inventory => {
-      inventory.setStore(store);
+      // inventory.setStore(store);
       db.Tag.create({
         description: 'bicycle'
       }).then(tag => {
