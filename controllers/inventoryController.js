@@ -28,7 +28,7 @@ module.exports = (db) => {
               price = statement[1];
               break;
             default:
-              res.status(400).json({ message: "queries must be of the form '/api/inventory/search/t={tag1},{tag2}&storeId={storeId}&c={category}' \n All values are optional" });
+              res.status(400).json({ message: "queries must be of the form '/api/inventory/search/t={tag1},{tag2}&storeId={storeId}&c={category}'", notes: ['All values are optional'] });
               break;
           }
         }
