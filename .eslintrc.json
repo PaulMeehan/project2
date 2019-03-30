@@ -30,7 +30,7 @@
 
   "rules": {
     "accessor-pairs": "error",
-    "arrow-spacing": ["1", { "before": true, "after": true }],
+    "arrow-spacing": [1, { "before": true, "after": true }],
     "block-spacing": ["warning", "always"],
     "brace-style": ["warning", "1tbs", { "allowSingleLine": true }],
     "camelcase": ["warning", { "properties": "never" }],
