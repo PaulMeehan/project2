@@ -7,7 +7,7 @@ const config = require(__dirname + '/../config/config.js')[env];
 const db = {};
 let sequelize;
 
-const { Inventory, Tag } = require('./sequelize');
+// const { Inventory, Tag } = require('./sequelize');
 
 config.details.operatorsAliases = {
   $and: Sequelize.Op.and,

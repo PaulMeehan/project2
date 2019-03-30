@@ -3,26 +3,21 @@ module.exports = function (sequelize, DataTypes) {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
-      primaryKey: true
-    },
-    itemID_FK: {
-      type: DataTypes.INTEGER,
+      primaryKey: true,
       allowNull: false
     },
-    tagID_FK: {
-      type: DataTypes.INTEGER,
+    description: {
+      type: DataTypes.STRING,
       allowNull: false
     }
   });
 
-  // Tag.associate = (models) => {
-  //   Tag.hasMany(models.Inventory, {
-  //     onDelete: 'cascade',
-  //     foreignKey: {
-  //       allowNull: false
-  //     }
-  //   });
-  // };
+  Tag.associate = function (models) {
+    Tag.belongsToMany(models.Inventory, {
+      through: 'InventoryTag',
+      foreignKey: 'tagId'
+    });
+  };
 
   return Tag;
 };

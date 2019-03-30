@@ -5,9 +5,9 @@ module.exports = function (sequelize, DataTypes) {
       autoIncrement: true,
       primaryKey: true
     },
-    storeID: {
-      type: DataTypes.INTEGER,
-      allowNull: false
+    itemName: {
+      type: DataTypes.STRING,
+      allowNull: true
     },
     category: {
       type: DataTypes.STRING,
@@ -23,11 +23,12 @@ module.exports = function (sequelize, DataTypes) {
     }
   });
 
-  // Inventory.associate = (models) => {
-  //   Inventory.hasMany(models.Tag, {
-  //     onDelete: 'cascade'
-  //   });
-  // };
+  Inventory.associate = function (models) {
+    Inventory.belongsToMany(models.Tag, {
+      through: 'InventoryTag',
+      foreignKey: 'inventoryId'
+    });
+  };
 
   return Inventory;
 };
