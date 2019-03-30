@@ -16,7 +16,8 @@ config.details.operatorsAliases = {
   $gt: Sequelize.Op.gt,
   $lt: Sequelize.Op.lt,
   $lte: Sequelize.Op.lte,
-  $like: Sequelize.Op.like
+  $like: Sequelize.Op.like,
+  $in: Sequelize.Op.in
 };
 
 if (config.use_env_variable) {

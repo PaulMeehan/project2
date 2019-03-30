@@ -28,6 +28,10 @@ module.exports = function (sequelize, DataTypes) {
     isAdmin: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
+    },
+    isStore: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
     }
   }, {
     timestamps: true,

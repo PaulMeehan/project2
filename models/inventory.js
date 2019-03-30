@@ -28,6 +28,7 @@ module.exports = function (sequelize, DataTypes) {
       through: 'InventoryTag',
       foreignKey: 'inventoryId'
     });
+    Inventory.belongsTo(models.Store);
   };
 
   return Inventory;
