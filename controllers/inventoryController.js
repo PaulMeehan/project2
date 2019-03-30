@@ -20,7 +20,7 @@ module.exports = (db) => {
     //   db.sequelize.query(`select itemID from (select itemID, COUNT(tagID) as myCount  from Inventory_Tags 
     //                     where tagID in ${tagID} GROUP BY itemID) as temp
     //                     where myCount =${tagCount}`);
-    // },
+    },
     createItem: (req, res) => {
       db.Inventory.sync().then(() => {
         return db.Inventory.create({
@@ -56,5 +56,5 @@ module.exports = (db) => {
     //     })
     //   }
     // }
-  }
-}
+  };
+};
