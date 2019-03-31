@@ -28,7 +28,7 @@ module.exports = function (sequelize, DataTypes) {
       through: 'InventoryTag',
       foreignKey: 'inventoryId'
     });
-    Inventory.Store = Inventory.belongsTo(models.Store, {
+    Inventory.belongsTo(models.Store, {
       foreignKey: {
         allowNull: false
       }

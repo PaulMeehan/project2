@@ -2,6 +2,25 @@
 /* eslint-disable no-undef */
 module.exports = (db) => {
   return {
+
+    findOne: (req, res) => {
+      const id = req.params.id;
+      db.Inventory.findOne({
+        where: {
+          id: id
+        },
+        include: [ {
+          model: db.Store
+        }, {
+          model: db.Tag
+        }]
+      }).then(response => {
+        res.json(response);
+      }).catch(error => {
+        res.json(error);
+      });
+    },
+
     search: (req, res) => {
       const query = req.params.query;
       let conditions;
@@ -9,6 +28,9 @@ module.exports = (db) => {
         where: {},
         include: [{
           model: db.Store
+        }, {
+          model: db.Tag,
+          attributes: ['id', 'description']
         }]
       };
       let where = search.where;
@@ -52,7 +74,7 @@ module.exports = (db) => {
         console.log(price);
       }
       if (tagIDs) {
-        //    Literal sequelize query to get all itemIDs containing all tags
+        //    Literal sequelize query to get all itemIDs containing ALL tags
         db.sequelize.query(`select inventoryId from (select inventoryId, COUNT(tagId) as myCount  from inventorytag 
         where tagId in (${tagIDs}) GROUP BY inventoryId) as temp 
         where myCount = ${tagIDs.length}`, { type: db.sequelize.QueryTypes.SELECT })
@@ -112,7 +134,12 @@ module.exports = (db) => {
           category: req.body.category,
           description: req.body.description,
           price: req.body.price,
-          storeId: storeId
+          storeId: storeId,
+          tagId: 1
+        }, {
+          include: [{
+            model: db.Tag
+          }]
         }).then(inventory => {
           res.status(200).json(inventory);
         }).catch(error => {
@@ -140,13 +167,6 @@ module.exports = (db) => {
           res.status(400).json({ message: error.message });
         });
       });
-    } //    ,
-    // updateTags: (req, res) => {
-    //   for (let i = 0; i < req.body.addTags.length; i++) {
-    //     db.Inventory_Tags.create({
-    //       itemID: req.params.id,
-    //     })
-    //   }
-    // }
+    }
   };
 };
