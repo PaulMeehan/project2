@@ -1,7 +1,6 @@
 module.exports = (db) => {
   return {
-    //findTagsbyDescription
-
+    //  findTagsbyDescription
     findTags: (tagIds, itemId = undefined, storeId = undefined, callback = undefined) => {
       //  match with store
       let storeinclude = {
@@ -21,7 +20,6 @@ module.exports = (db) => {
           id: itemId
         };
       }
-
       db.Tag.findAll({
         where: {
           id: {
@@ -45,7 +43,7 @@ module.exports = (db) => {
     },
 
     updateTags: (req, res) => {
-      findTags (req, 1, function (tags) {
+      findTags(req, 1, function (tags) {
         for (let i = 0; tags.length; i++) {
           console.log(tags[i]);
         }
