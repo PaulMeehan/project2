@@ -28,6 +28,10 @@ module.exports = function (sequelize, DataTypes) {
     isAdmin: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
+    },
+    isStore: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
     }
   }, {
     timestamps: true,
@@ -61,6 +65,10 @@ module.exports = function (sequelize, DataTypes) {
     const values = Object.assign({}, this.get());
     delete values.password;
     return values;
+  };
+
+  User.associate = (models) => {
+    User.belongsTo(models.Store);
   };
 
   return User;

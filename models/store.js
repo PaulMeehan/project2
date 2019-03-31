@@ -31,6 +31,7 @@ module.exports = function (sequelize, DataTypes) {
     Store.hasMany(models.Inventory, {
       onDelete: 'cascade'
     });
+    Store.hasMany(models.User);
   };
 
   return Store;
