@@ -35,7 +35,11 @@ module.exports = (db) => {
         }).then(tag => {
           item.addTag(tag, {through: {}} );
           res.json(tag);
+        }).catch(error => {
+          res.status(400).json(error);
         });
+      }).catch(error => {
+        res.status(404).json(error);
       });
     },
 
