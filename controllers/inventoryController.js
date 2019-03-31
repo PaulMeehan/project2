@@ -74,10 +74,11 @@ module.exports = (db) => {
         console.log(price);
       }
       if (tagIDs) {
+        const length = tagIDs.split(',').length;
         //    Literal sequelize query to get all itemIDs containing ALL tags
         db.sequelize.query(`select inventoryId from (select inventoryId, COUNT(tagId) as myCount  from inventorytag 
         where tagId in (${tagIDs}) GROUP BY inventoryId) as temp 
-        where myCount = ${tagIDs.length}`, { type: db.sequelize.QueryTypes.SELECT })
+        where myCount = ${length}`, { type: db.sequelize.QueryTypes.SELECT })
           .then(response => {
             //  if there aren't any items with all these tags return empty
             if (response.length < 1) {
