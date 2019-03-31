@@ -33,5 +33,12 @@ module.exports = (db) => {
         inventory.setTags([tag]);
       });
     });
+    db.Inventory.create({
+      itemName: 'GTA V',
+      category: 'games',
+      description: 'A fun game',
+      price: 25.99,
+      StoreId: 1
+    })
   });
 };
