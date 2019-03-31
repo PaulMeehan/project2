@@ -1,6 +1,22 @@
 module.exports = (db) => {
   return {
     //  findTagsbyDescription
+    searchTags: (req, res) => {
+      const query = req.params.query || '';
+      console.log(query);
+      db.Tag.findAll({
+        where: {
+          description: {
+            $like: `%${query}%`
+          }
+        }
+      }).then(tags => {
+        res.status(200).json(tags);
+      }).catch(error => {
+        res.status(400).json(error);
+      });
+    },
+
     findTags: (tagIds, itemId = undefined, storeId = undefined, callback = undefined) => {
       //  match with store
       let storeinclude = {
