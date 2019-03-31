@@ -5,7 +5,7 @@ module.exports = (passport, db) => {
   const AuthController = require('../controllers/authController')(passport, db);
   const AppController = require('../controllers/appController')();
   const InventoryController = require('../controllers/inventoryController')(db);
-  const TagsController = require('../controllers/tagsController')(db);
+  const TagsController = require('../controllers/tagsController').default(db);
   // Authentication
   router.post('/register', AuthController.register);
   router.post('/login', AuthController.login);
