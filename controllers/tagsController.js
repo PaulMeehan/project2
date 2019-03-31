@@ -17,6 +17,44 @@ module.exports = (db) => {
       });
     },
 
+    addTag: (req, res) => {
+      const tagName = req.body.tagName;
+      db.Inventory.findOne({
+        where: {
+          id: req.params.id
+        },
+        include: [{
+          model: db.Tag,
+          through: {
+            attributes: ["createdAt"]
+          }
+        }]
+      }).then(item => {
+        db.Tag.create({
+          description: tagName
+        }).then(tag => {
+          item.addTag(tag, {through: {}} );
+          res.json(tag);
+        });
+      });
+    },
+
+    recursiveTags: (newTags, builtTags, i, callback) => {
+      if (i < newTags.length) {
+        db.Tags.create({
+          description: newTags[i]
+        }).then(tag => {
+          builtTags.push(tag);
+          i++;
+          this.recursiveTags(newTags, builtTags, i, callback);
+        }).catch(error => {
+          callback(builtTags, error);
+        });
+      } else {
+        callback(builtTags);
+      }
+    },
+
     findTags: (tagIds, itemId = undefined, storeId = undefined, callback = undefined) => {
       //  match with store
       let storeinclude = {
