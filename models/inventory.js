@@ -1,21 +1,20 @@
 module.exports = function (sequelize, DataTypes) {
-
   let Inventory = sequelize.define('Inventory', {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true
     },
-    storeID: {
-      type: DataTypes.INTEGER,
-      allowNull: false
+    itemName: {
+      type: DataTypes.STRING,
+      allowNull: true
     },
     category: {
       type: DataTypes.STRING,
       allowNull: true
     },
     description: {
-      type: DataTypes.TEXT,
+      type: DataTypes.STRING,
       allowNull: true
     },
     price: {
@@ -23,6 +22,18 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: true
     }
   });
+
+  Inventory.associate = function (models) {
+    Inventory.belongsToMany(models.Tag, {
+      through: 'InventoryTag',
+      foreignKey: 'inventoryId'
+    });
+    Inventory.belongsTo(models.Store, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
 
   return Inventory;
 };

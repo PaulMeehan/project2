@@ -7,6 +7,8 @@ const config = require(__dirname + '/../config/config.js')[env];
 const db = {};
 let sequelize;
 
+// const { Inventory, Tag } = require('./sequelize');
+
 config.details.operatorsAliases = {
   $and: Sequelize.Op.and,
   $or: Sequelize.Op.or,
@@ -14,7 +16,8 @@ config.details.operatorsAliases = {
   $gt: Sequelize.Op.gt,
   $lt: Sequelize.Op.lt,
   $lte: Sequelize.Op.lte,
-  $like: Sequelize.Op.like
+  $like: Sequelize.Op.like,
+  $in: Sequelize.Op.in
 };
 
 if (config.use_env_variable) {
