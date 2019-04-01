@@ -1,4 +1,5 @@
 $(document).ready(function () {
+  //  testing, Amy can you read this?
   const newSearch = {
     itemName: itemName,
     category: category,
