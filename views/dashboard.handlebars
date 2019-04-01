@@ -1,8 +1,8 @@
 {{> nav/nav-block}}
 
 <div id="main-container" class="container">
-  <div class="jumbotron text-center header-wrap" align="center">
-    <p class="lead" id="Shop_local"><strong>Shop Local</strong></p>
+  <div class="jumbotron text-center header-wrap" align="center" id="intro">
+    <p class="lead" id="Shop_local"><strong>Keep it Local. Shop Local.</strong></p>
     <br>
 
     <div>
@@ -10,14 +10,25 @@
         You are logged in as {{user.firstName}}
         <a href="/logout"> <button type="btn" class="btn">Logout</button></a>
       {{else}}
-        <br>
-        <p>Shopally is a proud supporter of local businesses. This application allows you to search for items and products, based on a your location. Shopally will then find businesses with in your area based on your search query.</p>
-        <br>
-        <p>Looking for something but can't find the word? Use the tags feature and choose keywords to help refine your search</p>
+      <div id= "into_paragraph">
+        <p>Shopally is a proud supporter of locally owned businesses. Simply conduct a search for items products, and based on your location Shopally will provide an inventory listing of all in-stock products.</p>
         <br>
         <p>Log in to start shopping! Not a member? No problem, simply make a free acount.</p>
-        <br>
-        <button id="btn2">Login</button> <button id="btn3">Register for free</button>
+      </div>
+
+      <!--Buttons-->
+      <div id="buttons">
+        <button type="button" class="btn btn-warning" id="new_user_btn" href="/register" data-register={{register}}>Register for free</button>
+        <button type="button" class="btn btn-secondary" href="#" id="login-modal">Login</button>
+        
+
+
+      </div>
+      
+
+
+
+      <!--End Buttons-->
       {{/if}}
       <h5 id="login-err-msg"></h5>
     </div>
