@@ -167,6 +167,21 @@ module.exports = (db) => {
           res.status(400).json({ message: error.message });
         });
       });
+    },
+
+    deleteItem: (req, res) => {
+      authenticate(req, storeId => {
+        db.Inventory.destroy({
+          where: {
+            id: req.params.id,
+            StoreId: storeId
+          }
+        }).then(() => {
+          res.status(200).end();
+        }).catch(error => {
+          res.status(404).json({ message: 'Item not found in your inventory' });
+        });
+      });
     }
   };
 };
