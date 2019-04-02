@@ -21,6 +21,7 @@ module.exports = (passport, db) => {
   router.put('/inventory/:id', InventoryController.updateItem);
   router.get('/inventory/search/:query?', InventoryController.search);
   router.get('/inventory/:id', InventoryController.findOne);
+  router.delete('/inventory/:id',InventoryController.deleteItem);
   // Tags
   router.get('/tags/:query?', TagsController.searchTags);
   router.post('/tags/:id', TagsController.addTag);
