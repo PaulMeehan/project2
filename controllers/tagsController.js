@@ -1,4 +1,5 @@
 module.exports = (db) => {
+  const InventoryController = require('./inventoryController')(db);
   return {
     //  findTagsbyDescription
     searchTags: (req, res) => {
@@ -26,82 +27,52 @@ module.exports = (db) => {
         include: [{
           model: db.Tag,
           through: {
-            attributes: ["createdAt"]
+            attributes: ['createdAt']
           }
         }]
       }).then(item => {
         db.Tag.create({
           description: tagName
         }).then(tag => {
-          item.addTag(tag, {through: {}} );
+          item.addTag(tag, { through: {} });
           res.json(tag);
-        });
-      });
-    },
-
-    recursiveTags: (newTags, builtTags, i, callback) => {
-      if (i < newTags.length) {
-        db.Tags.create({
-          description: newTags[i]
-        }).then(tag => {
-          builtTags.push(tag);
-          i++;
-          this.recursiveTags(newTags, builtTags, i, callback);
         }).catch(error => {
-          callback(builtTags, error);
+          res.status(400).json(error);
         });
-      } else {
-        callback(builtTags);
-      }
-    },
-
-    findTags: (tagIds, itemId = undefined, storeId = undefined, callback = undefined) => {
-      //  match with store
-      let storeinclude = {
-        model: db.Store
-      };
-      if (storeId) {
-        storeinclude.where = {
-          id: storeId
-        };
-      }
-      //    match with item
-      let itemInclude = {
-        model: db.Inventory
-      };
-      if (itemId) {
-        itemInclude.where = {
-          id: itemId
-        };
-      }
-      db.Tag.findAll({
-        where: {
-          id: {
-            $in: req.body.addTags
-          }
-        },
-        include: [
-          {
-            model: db.Inventory,
-            where: {
-              id: req.params.id
-            },
-            include: [
-              storeinclude
-            ]
-          }
-        ]
-      }).then(tags => {
-        callback(tags);
+      }).catch(error => {
+        res.status(404).json(error);
       });
     },
 
     updateTags: (req, res) => {
-      findTags(req, 1, function (tags) {
-        for (let i = 0; tags.length; i++) {
-          console.log(tags[i]);
+      let id = parseInt(req.params.id);
+      console.log(id);
+      db.Inventory.findOne({
+        where: {
+          id: id
         }
-        res.json(tags);
+        // },
+        // include: [{
+        //   model: db.Tag,
+        //   through: {
+        //     attributes: ['createdAt']
+        //   }
+        // }]
+      }).then(item => {
+        db.Tag.findAll({
+          where: {
+            id: {
+              $in: req.body.tags
+            }
+          }
+        }).then(tags => {
+          item.addTags(tags, { through: {} });
+          res.json(tags);
+        }).catch(error => {
+          res.status(404).json(error);
+        });
+      }).catch(error => {
+        res.status(404).json({ message: 'No inventory found' });
       });
     }
   };

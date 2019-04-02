@@ -15,23 +15,30 @@ module.exports = (db) => {
     password: process.env.USER_PWD,
     isAdmin: false
   });
-  db.Store.create({
-    storeName: 'Example Store',
-    email: 'example@example.com'
-  }).then(store => {
-    db.Inventory.create({
-      itemName: 'bike',
-      category: 'sports',
-      description: 'A beautiful city bike',
-      price: 125.99,
-      StoreId: 1
-    }).then(inventory => {
-      // inventory.setStore(store);
-      db.Tag.create({
-        description: 'bicycle'
-      }).then(tag => {
-        inventory.setTags([tag]);
-      });
-    });
-  });
+  // db.Store.create({
+  //   storeName: 'Example Store',
+  //   email: 'example@example.com'
+  // }).then(store => {
+  //   db.Inventory.create({
+  //     itemName: 'bike',
+  //     category: 'sports',
+  //     description: 'A beautiful city bike',
+  //     price: 125.99,
+  //     StoreId: 1
+  //   }).then(inventory => {
+  //     // inventory.setStore(store);
+  //     db.Tag.create({
+  //       description: 'bicycle'
+  //     }).then(tag => {
+  //       inventory.setTags([tag]);
+  //     });
+  //   });
+  //   db.Inventory.create({
+  //     itemName: 'GTA V',
+  //     category: 'games',
+  //     description: 'A fun game',
+  //     price: 25.99,
+  //     StoreId: 1
+  //   });
+  // });
 };
