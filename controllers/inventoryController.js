@@ -135,8 +135,7 @@ module.exports = (db) => {
           category: req.body.category,
           description: req.body.description,
           price: req.body.price,
-          storeId: storeId,
-          tagId: 1
+          storeId: storeId
         }, {
           include: [{
             model: db.Tag

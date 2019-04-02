@@ -13,22 +13,31 @@
       <div id= "into_paragraph">
         <p>Shopally is a proud supporter of locally owned businesses. Simply conduct a search for items products, and based on your location Shopally will provide an inventory listing of all in-stock products.</p>
         <br>
-        <p>Log in to start shopping! Not a member? No problem, simply make a free acount.</p>
       </div>
 
-      <!--Buttons-->
-      <div id="buttons">
-        <button type="button" class="btn btn-warning" id="new_user_btn" href="/register" data-register={{register}}>Register for free</button>
-        <button type="button" class="btn btn-secondary" href="#" id="login-modal">Login</button>
-        
 
 
-      </div>
-      
+      <!--Search bar-->
+<form>
+  <input class="form-control form-control-lg" type="text" placeholder="Enter Product" id="product-search">
+  <button type="submit" class="btn btn-warning">Search</button>
+</form>
 
 
 
-      <!--End Buttons-->
+<!--Tags-->
+<div class="row" id="tags">
+    <div class="col-md-6 col-left" id="all-tags">
+    </div>
+
+<!--sSelected Tags-->
+    <div class="col-md-6 col-right" id="selected-tags">
+    </div>
+</div>
+
+
+
+
       {{/if}}
       <h5 id="login-err-msg"></h5>
     </div>

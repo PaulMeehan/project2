@@ -25,6 +25,6 @@ module.exports = (passport, db) => {
   // Tags
   router.get('/tags/:query?', TagsController.searchTags);
   router.post('/tags/:id', TagsController.addTag);
-  // router.put('/tags/:id', TagsController.updateTags);
+  router.put('/tags/:id', TagsController.updateTags);
   return router;
 };
