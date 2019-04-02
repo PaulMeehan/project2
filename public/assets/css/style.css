@@ -27,7 +27,6 @@ h1{
 #intro{
   width: 900px;
   text-align: left;
-
 }
 
 #Shop_local{
@@ -45,14 +44,13 @@ h1{
   width: 100%;
 }
 
-#new_user_btn{
+#add-user{
   margin: 1%;
 }
 
 #form-text{
   font-weight:475;
 }
-
 
 #user-form, .header-wrap, #create-form, .create-user-wrap {
   padding: 20px;
