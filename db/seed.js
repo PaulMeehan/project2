@@ -39,6 +39,6 @@ module.exports = (db) => {
       description: 'A fun game',
       price: 25.99,
       StoreId: 1
-    })
+    });
   });
 };
