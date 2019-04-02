@@ -1,7 +1,7 @@
 body {
-  color: white;
+  background: url('https://www.fluidfloors.com/wp-content/uploads/2017/09/iStock-Grocery-Cart-blurred-product-1.jpg');
   background-size: cover;
-  height:100%
+  height:100%;
 }
 
 .jumbotron {
@@ -12,11 +12,47 @@ body {
   color: black;
 }
 
-.btn {
-  color:white;
+h1{
+  color: #1788a5;
+  font-size: 60px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* .btn {
+  color: #CAEBF2;
   background:#cadde1;
   border: 1px solid white;
+} */
+
+#intro{
+  width: 900px;
+  text-align: left;
+
 }
+
+#Shop_local{
+  font-size: 70px;
+  color:#1788a5;
+  text-align: center;
+}
+
+#into_paragraph {
+  text-align: center;
+  font-weight:475;
+}
+
+#buttons{
+  width: 100%;
+}
+
+#new_user_btn{
+  margin: 1%;
+}
+
+#form-text{
+  font-weight:475;
+}
+
 
 #user-form, .header-wrap, #create-form, .create-user-wrap {
   padding: 20px;
@@ -38,11 +74,10 @@ body {
 .container {
   padding-bottom: 2%;
   margin-top: 10%;
-  background: rgba(86, 101, 115,.6);
   height:100%;
   border-radius: .25rem;
   margin-bottom: 2%;
-  width: 600px;
+  width: 1000px;
 }
 
 [data-useremail="true"] {
@@ -64,3 +99,28 @@ body {
 hr {
   background-color: #fff !important;
 }
+
+.splitting .char {
+  animation: slide-in 1s cubic-bezier(.5, 0, .5, 1) both;
+  animation-delay: calc(60ms * var(--char-index));
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateY(-1em) rotate(-.5turn) scale(0.5);
+    opacity: 0;
+  }
+}
+
+#logo {
+  font-size: 30px;
+  font-weight: bold;
+  color: #A9A9A9
+}
+
+#navbar{
+  height: 100px;
+  opacity: .90;
+  background-color: #CAEBF2
+}
+
