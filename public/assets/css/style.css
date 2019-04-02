@@ -125,3 +125,13 @@ hr {
 #product-search{
   margin-bottom: 2%;
 }
+
+#tags{
+  background: grey;
+  margin-top: 3%;
+}
+/* 
+#all-tags{
+  margin: 2%;
+  padding: 1%;
+} */
