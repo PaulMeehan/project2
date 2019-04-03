@@ -131,6 +131,22 @@ hr {
   margin: 3%;
 }
 
+.new-item-div {
+  text-align:center;
+}
+
+.itemDesc {
+  padding:5px;
+}
+
+.update-item {
+  padding-left:3px;
+  padding-right:3px;
+}
+
+.price {
+  width: 55px;
+}
 /* Emma Adding things neccessary for function */
 .hidden {
   display: none;

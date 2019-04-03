@@ -86,6 +86,26 @@ module.exports = (passport, db) => {
       }).catch(() => {
         res.json(false);
       });
+    },
+    //  gets the store associated with the current logged in user
+    getUserStore: (req, callback) => {
+      if (req.isAuthenticated()) {
+        db.User.findOne({
+          where: {
+            id: req.session.passport.user.id
+          }
+        }).then(() => {
+          const user = req.session.passport.user;
+          if (user.isStore) {
+            callback(user.StoreId);
+          } else {
+            res.status(400).json({ message: 'Error: user must be associated with a store to manage inventory' });
+          }
+        });
+      } else {
+        //  user isn't logged in
+        res.status(400).json({ message: 'Error: user must logged in to manage inventory' });
+      }
     }
   };
 };
