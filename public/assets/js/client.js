@@ -47,11 +47,11 @@ $(document).ready(function () {
         let newRow = $("<tr class = 'itemInfo hidden'>").attr('id', 'itemInfo' + response[i].id);
 
         let description = $('<td colspan=2>').append($('<p class = desc>').html('<strong>Description: </strong>' + response[i].description));
-        let storeInfo = $('<td colspan=2>').append($('<h3>').text("Store Info"));
-        storeInfo.append($("<p class = 'address'>").html('<strong>Address: </strong>'+store.address).attr('data-address',store.address));
-        storeInfo.append($('<p>').html('<strong>Email: </strong>'+store.email));
-        storeInfo.append($('<p>').html('<strong>Hours: </strong>'+store.hours));
-        storeInfo.append($('<a>').text('Website').attr('href',store.url));
+        let storeInfo = $('<td colspan=2>').append($('<h3>').text('Store Info'));
+        storeInfo.append($("<p class = 'address'>").html('<strong>Address: </strong>' + store.address).attr('data-address', store.address));
+        storeInfo.append($('<p>').html('<strong>Email: </strong>' + store.email));
+        storeInfo.append($('<p>').html('<strong>Hours: </strong>' + store.hours));
+        storeInfo.append($('<a>').text('Website').attr('href', store.url));
 
         newRow.append(description);
         newRow.append(storeInfo);
@@ -89,8 +89,8 @@ $(document).on('click', '.itemRow', function () {
   }
 });
 
-$(document).on('click','.address',function () {
+$(document).on('click', '.address', function () {
   console.log('maybe change so it goes to the map');
   let address = $(this).attr('data-address');
-  $('#map').attr('src',mapSrc + address);
+  $('#map').attr('src', mapSrc + address);
 });
