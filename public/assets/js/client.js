@@ -48,7 +48,7 @@ $(document).ready(function () {
 
         let description = $('<td colspan=2>').append($('<p class = desc>').html('<strong>Description: </strong>' + response[i].description));
         let storeInfo = $('<td colspan=2>').append($('<h3>').text('Store Info'));
-        storeInfo.append($("<p class = 'address'>").html('<strong>Address: </strong>' + store.address).attr('data-address', store.address));
+        storeInfo.append($("<p class = 'address' data-toggle='modal' data-target='#mapModal'></p>").html('<strong>Address: </strong>' + store.address).attr('data-address', store.address));
         storeInfo.append($('<p>').html('<strong>Email: </strong>' + store.email));
         storeInfo.append($('<p>').html('<strong>Hours: </strong>' + store.hours));
         storeInfo.append($('<a>').text('Website').attr('href', store.url));
@@ -89,12 +89,15 @@ $(document).on('click', '.itemRow', function () {
   }
 });
 
+// Map modal
 $(document).on('click', '.address', function () {
   console.log('maybe change so it goes to the map');
   let address = $(this).attr('data-address');
   $('#map').attr('src', mapSrc + address);
 });
 
+
+// on click scroll to inventory
 $(document).on('click', function () {
   $('#item-search').click(function () {
     $('html, body').animate({
@@ -102,3 +105,15 @@ $(document).on('click', function () {
     }, 1000);
   });
 });
+
+// // Map modal title
+// $(document).on('click', '.address', function () {
+//   let title = $(this).text(response[i].storeName)
+//   $('#MapModalTitle').attr(title)
+// });
+
+// Go to store site FOR VERSION 2.0 SINCE URL'S ARE NOT REAL!!!
+// $(document).on('click', '#go-to-store', function () {
+//   let url = $(this).attr('href');
+//   $('#go-to-store').attr('src', url);
+// });
