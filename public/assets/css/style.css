@@ -122,9 +122,6 @@ hr {
   background-color: #CAEBF2
 }
 
-#product-search{
-  margin-bottom: 2%;
-}
 
 #tags{
   background: grey;
@@ -148,4 +145,14 @@ hr {
 /* Emma making sure people know this is a button, feel free to change colors */
 .address:hover {
   color: purple;
+}
+
+.inventory{
+  border: solid 1px;   
+  background-color: #343a40;
+  opacity: .70;
+  color: #A9A9A9;
+  border-radius: 15px;
+  height: 50px;
+  vertical-align: middle;
 }
