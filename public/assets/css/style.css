@@ -31,6 +31,10 @@ h3{
   font-style: italic;
 }
 
+h4{
+  color: white;
+}
+
 /* .btn {
   color: #CAEBF2;
   background:#cadde1;
@@ -341,4 +345,25 @@ hr {
   margin-left: 3%;
   cursor: pointer;
   color: white;
+}
+
+.newItem{
+  background-color: #ffc107;
+  border: none;
+  text-shadow: none;
+  box-shadow: none;
+  border-radius: 3px;
+  border-radius: 3px;
+  border-radius: 3px;
+  margin-right: 3%;
+  cursor: pointer;
+}
+
+.desc-text-box{
+  width: 96%;
+  height: 50px;
+  vertical-align:top;
+}
+#description{
+  float: left;
 }
