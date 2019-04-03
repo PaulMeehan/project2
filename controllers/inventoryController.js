@@ -106,30 +106,10 @@ module.exports = (db, authController) => {
         });
       }
     },
-    //  returns a callback with the storeId associated with the user
-    // authenticate: (req, callback) => {
-    //   if (req.isAuthenticated()) {
-    //     db.User.findOne({
-    //       where: {
-    //         id: req.session.passport.user.id
-    //       }
-    //     }).then(() => {
-    //       const user = req.session.passport.user;
-    //       if (user.isStore) {
-    //         callback(user.StoreId);
-    //       } else {
-    //         res.status(400).json({ message: 'Error: user must be associated with a store to manage inventory' });
-    //       }
-    //     });
-    //   } else {
-    //     //  user isn't logged in
-    //     res.status(400).json({ message: 'Error: user must logged in to manage inventory' });
-    //   }
-    // },
 
     createItem: (req, res) => {
     //  only certain logged in users can create items
-      authenticate(req, function (storeId) {
+      authController.getUserStore(req, function (storeId) {
         db.Inventory.create({
           itemName: req.body.itemName,
           category: req.body.category,
@@ -170,7 +150,7 @@ module.exports = (db, authController) => {
     },
 
     deleteItem: (req, res) => {
-      authenticate(req, storeId => {
+      authController.getUserStore(req, storeId => {
         db.Inventory.destroy({
           where: {
             id: req.params.id,

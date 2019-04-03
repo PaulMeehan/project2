@@ -1,7 +1,6 @@
 //  View Tags
 // $(document).ready(function () {
 
-
 //   // this is supposed to post an item to a store
 //   $('.newItem').click(() => {
 //     const newItem = {
@@ -21,21 +20,17 @@
 //   });
 
 //   // this is the delete item section
-//   $('.delete-item').on('click', (event) => {
-//     const id = $(this).data('id');
+$('.delete-item').on('click', (event) => {
+  const id = $(event.target).attr('data-item');
 
-//     $.ajax('/api/inventory/' + id, {
-//       type: 'DELETE'
-//     }).then(() => {
-//       console.log('deleted item', id);
-//       // Reload the page to get the updated list
-//       location.reload();
-//     });
-//   });
-
-//   // this is the item update section
-
-// });
+  $.ajax('/api/inventory/' + id, {
+    type: 'DELETE'
+  }).then(() => {
+    console.log('deleted item', id);
+    // Reload the page to get the updated list
+    location.reload();
+  });
+});
 
 $(document).on('click', '.view-tags', (event) => {
   let id = $(event.target).attr('data-item');
