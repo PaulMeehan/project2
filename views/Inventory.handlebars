@@ -52,13 +52,13 @@
             <td colspan=1>
                 <button class = 'addTag hidden' id="addTag{{id}}" data-item={{id}}>Create Tag</button>
             </td>
-            <td colspan=2>
+            <td colspan=2 id ='current-tags{{id}}'>
                 {{#each Tags}}
                     <button class ="tag current" data-tag={{id}} data-item={{../id}}>{{description}}</button>
                 {{/each}}
             </td>
             <td colspan=2>
-                <button class = 'update-tags' data-item={{id}} data-currentTags = "{{#each Tags}}{{id}},{{/each}}">
+                <button class = 'update-tags' id ="update-tags{{id}}" data-item={{id}} data-currentTags = "{{#each Tags}}{{id}},{{/each}}" data-addTags = "" data-removeTags = "">
                     Update Tags
                 </button>
             </td>
@@ -70,11 +70,9 @@
         <tr>
             <td><input type='text' placeholder="Item Name" id = "new-name"></td>
             <td><input type='text' placeholder="Category" id = "new-category"></td>
-            <td><input type='text' placeholder="Price" id = "new-price"></td>
+            <td><input type='text' placeholder="Description" id = "new-description"></td>            
+            <td><input type='text' class ='price' placeholder="Price" id = "new-price"></td>
             <td><button class = 'newItem' ><i class="fas fa-check" data-item = {{id}}></i></button></td>
-        </tr>
-        <tr class = 'itemDesc'>
-            <td colspan=3> <strong>Description: </strong><input class= 'desc-text-box' type='text' placeholder="Description" id = "new-description"></td>
         </tr>
     </tbody>
     </table>

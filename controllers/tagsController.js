@@ -47,6 +47,8 @@ module.exports = (db) => {
     updateTags: (req, res) => {
       let id = parseInt(req.params.id);
       console.log(id);
+      console.log(req.body);
+      console.log(req.body.removeTags);
       db.Inventory.findOne({
         where: {
           id: id
@@ -55,7 +57,7 @@ module.exports = (db) => {
         db.Tag.findAll({
           where: {
             id: {
-              $in: req.body.addTags
+              $in: req.body['addTags[]']
             }
           }
         }).then(tags => {
@@ -63,20 +65,22 @@ module.exports = (db) => {
           db.Tag.findAll({
             where: {
               id: {
-                $in: req.body.removeTags
+                $in: req.body['removeTags[]']
               }
             }
           }).then(tags => {
-            item.removeTags(tags,{ through: {}});
+            item.removeTags(tags, { through: {} });
             res.json(tags);
           }).catch(error => {
+            throw error;
             res.status(404).json(error);
           });
         }).catch(error => {
+          throw error;
           res.status(404).json(error);
         });
-        
       }).catch(error => {
+        throw error;
         res.status(404).json({ message: 'No inventory found' });
       });
     }
