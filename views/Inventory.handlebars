@@ -62,9 +62,11 @@
             </td>
         </tr>
         {{/each}}
+
+ <!--CREATE NEW ITEM-->       
         <tr>
-            <th colspan=4><h3 class ='new-item-div' >Add A New Item</h3></th>
-        </tr>
+            <th colspan=6><h4 class ='new-item-div'>Add A New Item</h4></th>
+
         <tr>
             <td><input type='text' placeholder="Item Name" id = "new-name"></td>
             <td><input type='text' placeholder="Category" id = "new-category"></td>
@@ -72,7 +74,7 @@
             <td><button class = 'newItem' ><i class="fas fa-check" data-item = {{id}}></i></button></td>
         </tr>
         <tr class = 'itemDesc'>
-            <td colspan=3> <strong>Description: </strong><input class= 'desc-text-box' type='text' placeholder="Description" id = "new-description"></td>
+            <td colspan=6> <strong id="description"></strong><input class= 'desc-text-box' type='text' placeholder="Description" id = "new-description"></td>
         </tr>
     </tbody>
     </table>
