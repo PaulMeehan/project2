@@ -65,3 +65,9 @@ $(document).on('search','.tag-search', event => {
     console.log(response);
   });
 });
+
+// $(document).on('click', '#AccountDetails', function () {
+//   console.log('maybe change so it goes to the map');
+//   let address = $(this).attr('data-address');
+//   $('#map').attr('src', mapSrc + address);
+// });
