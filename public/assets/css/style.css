@@ -301,3 +301,44 @@ hr {
 .table th { 
   border-top: none; 
 }
+
+.update-item{
+  background-color: #ffc107;
+  border: none;
+  text-shadow: none;
+  box-shadow: none;
+  border-radius: 3px;
+  border-radius: 3px;
+  border-radius: 3px;
+  margin-right: 3%;
+  cursor: pointer;
+}
+
+.delete-item{
+  background-color: #343a40;
+  border: none;
+  text-shadow: none;
+  box-shadow: none;
+  border-radius: 3px;
+  border-radius: 3px;
+  border-radius: 3px;
+  margin-left: 3%;
+  cursor: pointer;
+}
+
+.fas{
+  color: white;
+}
+
+.view-tags{
+  background-color: #1788a5;
+  border: none;
+  text-shadow: none;
+  box-shadow: none;
+  border-radius: 3px;
+  border-radius: 3px;
+  border-radius: 3px;
+  margin-left: 3%;
+  cursor: pointer;
+  color: white;
+}
