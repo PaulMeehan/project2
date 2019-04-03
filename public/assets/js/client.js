@@ -97,10 +97,10 @@ $(document).on('click', '.address', function () {
 });
 
 // Go to store site
-$(document).on('click', '.website', function () {
-  let url = $(this).attr('href');
-  $('#go-to-store').attr('src', url);
-});
+// $(document).on('click', '#go-to-store', function () {
+//   let url = $(this).attr('href');
+//   $('#go-to-store').attr('src', url);
+// });
 
 // on click scroll to inventory
 $(document).on('click', function () {
@@ -110,3 +110,9 @@ $(document).on('click', function () {
     }, 1000);
   });
 });
+
+// // Map modal title
+// $(document).on('click', '.address', function () {
+//   let title = $(this).text(response[i].storeName)
+//   $('#MapModalTitle').attr(title)
+// });
