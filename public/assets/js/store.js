@@ -1,45 +1,64 @@
-// api serarch from client side
+//  View Tags
+// $(document).ready(function () {
 
-// this is supposed to retrieve the data from a search
 
+//   // this is supposed to post an item to a store
+//   $('.newItem').click(() => {
+//     const newItem = {
+//       name: $('#itemName').val().trim(),
+//       category: $('#itemCategory').val().trim(),
+//       description: $('#itemDescription').val().trim(),
+//       price: $('#price').val().trim()
+//     };
+//     $.ajax('/api/inventory', {
+//       type: 'POST',
+//       data: newItem
+//     }).then(() => {
+//       console.log('added item' + id);
+//       // Reload the page to get the updated list
+//       location.reload();
+//     });
+//   });
 
-// this is supposed to post an item to a store
-$('.newItem').click(() => {
+//   // this is the delete item section
+//   $('.delete-item').on('click', (event) => {
+//     const id = $(this).data('id');
+
+//     $.ajax('/api/inventory/' + id, {
+//       type: 'DELETE'
+//     }).then(() => {
+//       console.log('deleted item', id);
+//       // Reload the page to get the updated list
+//       location.reload();
+//     });
+//   });
+
+//   // this is the item update section
+
+// });
+
+$(document).on('click', '.view-tags', (event) => {
+  let id = $(event.target).attr('data-item');
+  console.log($(event.target));
+  let tagDiv = $('#tag-div' + id);
+  tagDiv.removeClass('hidden');
+});
+
+$(document).on('click', '.update-item', (event) => {
+  const id = $(event.target).attr('data-item');
+  console.log($('#description' + id));
   const newItem = {
-    name: $('#itemName').val().trim(),
-    category: $('#itemCategory').val().trim(),
-    description: $('#itemDescription').val().trim(),
-    price: $('#price').val().trim()
+    itemName: $('#name' + id).val().trim(),
+    category: $('#category' + id).val().trim(),
+    description: $('#description' + id).val().trim(),
+    price: $('#price' + id).val().trim()
   };
-  $.ajax('/api/inventory', {
-    type: 'POST',
+  $.ajax('/api/inventory/' + id, {
+    type: 'PUT',
     data: newItem
   }).then(() => {
-    console.log('added item' + id);
+    console.log('updated' + id);
     // Reload the page to get the updated list
     location.reload();
   });
-});
-
-// this is the delete item section
-$('.delete-item').on('click', (event) => {
-  const id = $(this).data('id');
-
-  $.ajax('/api/inventory/' + id, {
-    type: 'DELETE'
-  }).then(() => {
-    console.log('deleted item', id);
-    // Reload the page to get the updated list
-    location.reload();
-  });
-});
-
-// this is the item update section
-$.ajax('/api/inventory/' + id, {
-  type: 'PUT',
-  data: newItem
-}).then(() => {
-  console.log('updated' + id);
-  // Reload the page to get the updated list
-  location.reload();
 });

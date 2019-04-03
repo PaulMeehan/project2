@@ -4,7 +4,7 @@ const ensureAuthenticated = require('../middlewares/ensureAuthenticated');
 module.exports = (passport, db) => {
   const AuthController = require('../controllers/authController')(passport, db);
   const AppController = require('../controllers/appController')();
-  const InventoryController = require('../controllers/inventoryController')(db);
+  const InventoryController = require('../controllers/inventoryController')(db,AuthController);
   const TagsController = require('../controllers/tagsController')(db);
   // Authentication
   router.post('/register', AuthController.register);

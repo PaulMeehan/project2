@@ -1,7 +1,8 @@
-USE project2_dev;
+INSERT INTO Users (firstName, lastName, email, password, isAdmin, createdAt,updatedAt)
+VALUES ("Joe", "Gates", "j@g.co", "password", true, now(),now());
 
-INSERT INTO Users (firstName, lastName, email, password, isAdmin)
-VALUES ("Jane", "Jobs", "j@j.co", "$2b$10$afGmlGCU0AGEzZBILPyPWOfSclxjMxKocB8QXv8CqhN73IHUUp7Gi", false);
+INSERT INTO Users (firstName, lastName, email, password, isAdmin, createdAt, updatedAt)
+VALUES ("Jane", "Jobs", "j@j.co", "$2b$10$afGmlGCU0AGEzZBILPyPWOfSclxjMxKocB8QXv8CqhN73IHUUp7Gi", false, now(),now());
 
 INSERT INTO stores (storeName, email, hours, address, url, createdAt, updatedAt) values 
 ("Bob's Bike Rack", "bobsmith@xmail.com", "9:00 - 5:00 Mon-Sat", "123 Main St. Durham NC 27715", "http://www.bobsbikerack.com", now(), now()),
@@ -49,5 +50,3 @@ INSERT INTO inventorytag (inventoryId, tagId, createdAt, updatedAt) values
 (9,3, now(), now()),
 (9,4, now(), now());
 
-INSERT INTO Users (firstName, lastName, email, password, isAdmin, isStore, storeId)
-VALUES ("Joe", "Gates", "j@g.co", "$2b$10$afGmlGCU0AGEzZBILPyPWOfSclxjMxKocB8QXv8CqhN73IHUUp7Gi", true, true, 1);

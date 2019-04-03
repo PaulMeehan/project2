@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
-module.exports = (db) => {
+module.exports = (db, authController) => {
   return {
 
     findOne: (req, res) => {
@@ -107,25 +107,25 @@ module.exports = (db) => {
       }
     },
     //  returns a callback with the storeId associated with the user
-    authenticate: (req, callback) => {
-      if (req.isAuthenticated()) {
-        db.User.findOne({
-          where: {
-            id: req.session.passport.user.id
-          }
-        }).then(() => {
-          const user = req.session.passport.user;
-          if (user.isStore) {
-            callback(user.StoreId);
-          } else {
-            res.status(400).json({ message: 'Error: user must be associated with a store to manage inventory' });
-          }
-        });
-      } else {
-        //  user isn't logged in
-        res.status(400).json({ message: 'Error: user must logged in to manage inventory' });
-      }
-    },
+    // authenticate: (req, callback) => {
+    //   if (req.isAuthenticated()) {
+    //     db.User.findOne({
+    //       where: {
+    //         id: req.session.passport.user.id
+    //       }
+    //     }).then(() => {
+    //       const user = req.session.passport.user;
+    //       if (user.isStore) {
+    //         callback(user.StoreId);
+    //       } else {
+    //         res.status(400).json({ message: 'Error: user must be associated with a store to manage inventory' });
+    //       }
+    //     });
+    //   } else {
+    //     //  user isn't logged in
+    //     res.status(400).json({ message: 'Error: user must logged in to manage inventory' });
+    //   }
+    // },
 
     createItem: (req, res) => {
     //  only certain logged in users can create items
@@ -149,7 +149,7 @@ module.exports = (db) => {
     },
 
     updateItem: (req, res) => {
-      authenticate(req, function (storeId) {
+      authController.getUserStore(req, function (storeId) {
         db.Inventory.update({
           itemName: req.body.itemName,
           category: req.body.category,

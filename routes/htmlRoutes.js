@@ -62,8 +62,8 @@ module.exports = (db) => {
       res.redirect('/');
     });
   });
-  //---add text box and submit delete buttons in handlebars---//
-  router.get('/inventory',(req,res) => {
+
+  router.get('/inventory', (req, res) => {
     if (req.isAuthenticated()) {
       db.User.findOne({
         where: {
@@ -74,15 +74,17 @@ module.exports = (db) => {
           userInfo: req.session.passport.user,
           isloggedin: req.isAuthenticated()
         };
-        db.Inventory.findAll( {
+        db.Inventory.findAll({
           where: {
-            StoreId : user.userInfo.StoreId
-          }
+            StoreId: user.userInfo.StoreId
+          },
+          include:
+            { model: db.Tag, through: { attributes: [] } }
         }).then(items => {
           user.items = items;
-          res.render('profile', user);
+          // res.json(user);
+          res.render('inventory', user);
         });
-        
       });
     } else {
       res.redirect('/');

@@ -1,0 +1,64 @@
+{{> nav/nav-block}}
+
+<div id="main-container" class="container">
+  <header align="center" class="header-wrap">
+    <h1>View or update your Inventory</h1>
+    <div class="userId">
+      <h3>Welcome, {{userInfo.firstName}}</h3>
+      <h5 id="user-number" data-useremail="{{userInfo.email}}">Account email: {{userInfo.email}}</h5>
+    </div>
+    <h3 id="update-err-msg"></h3>
+  </header>
+
+<!--Tags-->
+    <div class="row" id="tags">
+        <div class="col-md-6 col-left" id="all-tags">
+        </div>
+
+<!--Selected Tags-->
+        <div class="col-md-6 col-right" id="selected-tags">
+        </div>
+    </div>
+
+    <div class = "inventory">
+    <table class="table">
+    <thead>
+        <tr>
+        <th scope="col">Item</th>
+        <th scope="col">Category</th>
+        <th scope="col">Price</th>
+        <th scope="col">Update</th>
+        </tr>
+    </thead>
+    <tbody id = 'inventory-body'>
+        {{#each items}}
+        <tr>
+            <td><input type='text' value="{{itemName}}" id = "name{{id}}"></th>
+            <td><input type='text' value="{{category}}" id = "category{{id}}"></th>
+            <td><input type='text' value="{{price}}" id = "price{{id}}"></th>
+            <td><button class = 'update-item' data-item = {{id}}><i class="fas fa-check" data-item = {{id}}></i></button><button class = 'delete-item' data-item = {{id}}><i class="fas fa-times" data-item = {{id}}></i></button></th>
+        </tr>
+        <tr class = 'itemDesc'>
+            <td colspan=3> <strong>Description: </strong><input class= 'desc-text-box' type='text' value="{{description}}" id = "description{{id}}"></th>
+            <td><button class = 'view-tags' data-item = {{id}}>View Tags</button></th>
+        </tr>
+        <tr class = "hidden tag-div" id = 'tag-div{{id}}'>
+            <td colspan=2></td>
+            <td colspan=2>
+                {{#each Tags}}
+                    <button class ="tag">{{description}}</button>
+                {{/each}}
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+    </table>
+    </div>
+
+
+
+
+      <h5 id="login-err-msg"></h5>
+    <script src= "assets/js/store.js"></script>
+</div>
+{{> modal/login-block}}

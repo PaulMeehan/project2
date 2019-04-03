@@ -140,6 +140,10 @@ hr {
   margin: 3%;
 }
 
+.itemDesc {
+  padding:5px;
+}
+
 /* Emma Adding things neccessary for function */
 .hidden {
   display: none;
