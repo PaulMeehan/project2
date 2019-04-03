@@ -76,10 +76,11 @@ module.exports = (db) => {
         };
         db.Inventory.findAll( {
           where: {
-            StoreId : user.StoreId
+            StoreId : user.userInfo.StoreId
           }
         }).then(items => {
-          res.render('profile', {user: user, items: items});
+          user.items = items;
+          res.render('profile', user);
         });
         
       });
