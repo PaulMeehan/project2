@@ -52,13 +52,13 @@
             <td colspan=1>
                 <button class = 'addTag hidden' id="addTag{{id}}" data-item={{id}}>Create Tag</button>
             </td>
-            <td colspan=2>
+            <td colspan=2 id ='current-tags{{id}}'>
                 {{#each Tags}}
                     <button class ="tag current" data-tag={{id}} data-item={{../id}}>{{description}}</button>
                 {{/each}}
             </td>
             <td colspan=2>
-                <button class = 'update-tags' data-item={{id}} data-currentTags = "{{#each Tags}}{{id}},{{/each}}">
+                <button class = 'update-tags' id ="update-tags{{id}}" data-item={{id}} data-currentTags = "{{#each Tags}}{{id}},{{/each}}" data-addTags = "" data-removeTags = "">
                     Update Tags
                 </button>
             </td>
