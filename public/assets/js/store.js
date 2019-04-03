@@ -81,10 +81,33 @@ $(document).on('search', '.tag-search', event => {
         console.log(currentTags.includes(tagId));
       }
     }
+
+    // Creating a new tag option
+    $('#addTag' + id).removeClass('hidden');
   });
 });
 
 // Adding new Tags
+$(document).on('click', '.addTag', event => {
+  let itemId = $(event.target).attr('data-item');
+  let tagName = $('#search' + itemId).val().trim();
+  $.ajax('/api/tags/' + itemId, {
+    type: 'post',
+    data: {
+      tagName: tagName
+    }
+  }).then(response => {
+    // add new tag to existing tags
+    let tagId = response.id;
+    tagList[itemId].currentTags.push(tagId);
+    let newTag = $("<button class = 'tag current'>").text(response.description);
+    newTag.attr('data-item', itemId);
+    newTag.attr('data-tag', tagId);
+    $('#current-tags' + itemId).append(newTag);
+  });
+});
+
+//  Updating Tags
 $(document).on('click', '.unselected', event => {
   let itemId = $(event.target).attr('data-item');
   let tagId = $(event.target).attr('data-tag');
