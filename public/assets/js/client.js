@@ -51,7 +51,7 @@ $(document).ready(function () {
         storeInfo.append($("<p class = 'address' data-toggle='modal' data-target='#mapModal'></p>").html('<strong>Address: </strong>' + store.address).attr('data-address', store.address));
         storeInfo.append($('<p>').html('<strong>Email: </strong>' + store.email));
         storeInfo.append($('<p>').html('<strong>Hours: </strong>' + store.hours));
-        storeInfo.append($("<a class = 'website'>").text('Website').attr('href', store.url));
+        storeInfo.append($('<a>').text('Website').attr('href', store.url));
 
         newRow.append(description);
         newRow.append(storeInfo);
@@ -96,11 +96,6 @@ $(document).on('click', '.address', function () {
   $('#map').attr('src', mapSrc + address);
 });
 
-// Go to store site
-// $(document).on('click', '#go-to-store', function () {
-//   let url = $(this).attr('href');
-//   $('#go-to-store').attr('src', url);
-// });
 
 // on click scroll to inventory
 $(document).on('click', function () {
@@ -115,4 +110,10 @@ $(document).on('click', function () {
 // $(document).on('click', '.address', function () {
 //   let title = $(this).text(response[i].storeName)
 //   $('#MapModalTitle').attr(title)
+// });
+
+// Go to store site FOR VERSION 2.0 SINCE URL'S ARE NOT REAL!!!
+// $(document).on('click', '#go-to-store', function () {
+//   let url = $(this).attr('href');
+//   $('#go-to-store').attr('src', url);
 // });
