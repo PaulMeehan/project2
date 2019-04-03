@@ -1,20 +1,20 @@
 module.exports = (db) => {
-  db.User.create({
-    firstName: 'Joe',
-    lastName: 'Gates',
-    email: 'j@g.co',
-    password: process.env.ADMIN_USER_PWD,
-    isAdmin: true,
-    isStore: true,
-    StoreId: 1
-  });
-  db.User.create({
-    firstName: 'Jane',
-    lastName: 'Jobs',
-    email: 'j@j.co',
-    password: process.env.USER_PWD,
-    isAdmin: false
-  });
+  // db.User.create({
+  //   firstName: 'Joe',
+  //   lastName: 'Gates',
+  //   email: 'j@g.co',
+  //   password: process.env.ADMIN_USER_PWD,
+  //   isAdmin: true,
+  //   isStore: true,
+  //   StoreId: 1
+  // });
+  // db.User.create({
+  //   firstName: 'Jane',
+  //   lastName: 'Jobs',
+  //   email: 'j@j.co',
+  //   password: process.env.USER_PWD,
+  //   isAdmin: false
+  // });
   // db.Store.create({
   //   storeName: 'Example Store',
   //   email: 'example@example.com'
