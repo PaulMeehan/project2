@@ -1,6 +1,4 @@
-//  View Tags
-// $(document).ready(function () {
-
+const tagList = {};
 //   // this is supposed to post an item to a store
 $(document).on('click', '.newItem', () => {
   const newItem = {
@@ -34,7 +32,11 @@ $(document).on('click', '.delete-item', (event) => {
 
 $(document).on('click', '.view-tags', (event) => {
   let id = $(event.target).attr('data-item');
-  console.log($(event.target));
+  tagList[id] = {
+    currentTags: $('#update-tags' + id).attr('data-currenttags').join(','),
+    addTags: [],
+    removeTags: []
+  };
   let tagDiv = $('#tag-div' + id);
   tagDiv.removeClass('hidden');
 });
@@ -91,7 +93,7 @@ $(document).on('click', '.unselected', event => {
   let removeTags = $('#update-tags' + itemId).attr('data-removetags').split(',');
   //  if it's a tag we were going to remove, just remove it from the list
   if (removeTags.includes(tagId)) {
-    removeTags = removeTags.filter(e => e !== tagId);
+    removeTags = removeTags.filter(e => e !== tagId || '');
     $('#update-tags' + itemId).attr('data-addtags', removeTags.join(','));
     $(event.target).addClass('current');
   } else {
@@ -113,7 +115,7 @@ $(document).on('click', '.selected', event => {
 
   //  remove it from the list of tags to be added
   let addTags = $('#update-tags' + itemId).attr('data-addtags').split(',');
-  addTags = addTags.filter(e => e !== tagId);
+  addTags = addTags.filter(e => e !== tagId || '');
   $('#update-tags' + itemId).attr('data-addtags', addTags.join(','));
 
   //  change location
