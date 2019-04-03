@@ -7,18 +7,30 @@
 
     <div>
       <div id= "into_paragraph">
-        <p> Shopally is a proud supporter of locally owned businesses. Simply conduct a search for items products, and based on your location Shopally will provide an inventory listing of all in-stock products.</p>
+        <p>Simply conduct a search using tags for a product. Once all tags have been searched, click on the tag to select. Shopally will find your items and provide an inventory listing of all in-stock products from your favorite local shops. What to go now? Just click the store name!</p>
         <br>
       </div>
 
+<!--Search bar-->
+  <form>
+    <div class="input-group mb-3">
+      <input type="text" class="form-control form-control-lg" placeholder="Enter Tags" aria-label="Enter Tags" aria-describedby="button-addon2" id="product-search">
+    <div class="input-group-append">
+      <button class="btn btn-warning" type="button" id="tag-search-button">Search</button>
+    </div>
+    </div>
+  </form>
 
-
-      <!--Search bar-->
-<form>
-  <input class="form-control form-control-lg" type="text" placeholder="Enter Tags" id="product-search">
-  <button class="btn btn-warning" id ="tag-search-button">Search</button>
-</form>
-
+<!--Tag Headers-->
+<div class="row">
+    <div class="col-md-6 col-left" id="tags-search-header">
+        <h2>Tags Searched</h2>
+    </div>
+        
+    <div class="col-md-6 col-right" id="selected-tags">
+        <h2>Selected Tags</h2>
+    </div>
+</div>
 
 
 <!--Tags-->
@@ -31,32 +43,36 @@
     </div>
 </div>
 
+<!--item search button-->
 <form>
-  <button class="btn btn-warning" id ="item-search">Search Items</button>
+  <button class="btn btn-warning" id ="item-search">Find my Items</button>
 </form>
+
 <div class = "inventory">
-  <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Item</th>
+  <table class="table table-hover">
+  {{!-- <thead> --}}
+    {{!-- <tr> --}}
+      <th scope="col" id="item">Item</th>
       <th scope="col">Category</th>
       <th scope="col">Price</th>
       <th scope="col">Store</th>
-    </tr>
-  </thead>
+    {{!-- </tr> --}}
+  {{!-- </thead> --}}
   <tbody id = 'inventory-body'>
   </tbody>
 </table>
 </div>
 
+
+
 <!--Google Maps-->
-<iframe
+{{!-- <iframe
   id= "map"
   width="600"
   height="450"
   frameborder="0" style="border:0"
   src="  https://www.google.com/maps/embed/v1/place?key=AIzaSyAPoB0qxu8vfVb1NJ0ZrrLIUHaiyOZcJWg&q=Eiffel+Tower,Paris+France" allowfullscreen>
-</iframe>
+</iframe> --}}
 
 
 
