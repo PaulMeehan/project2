@@ -94,3 +94,11 @@ $(document).on('click', '.address', function () {
   let address = $(this).attr('data-address');
   $('#map').attr('src', mapSrc + address);
 });
+
+$(document).on('click', function () {
+  $('#item-search').click(function () {
+    $('html, body').animate({
+      scrollTop: $('.inventory').offset().top
+    }, 1000);
+  });
+});

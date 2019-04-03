@@ -18,16 +18,20 @@ h1{
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+h2{
+  color: #1788a5;
+  font-size: 30px; 
+  font-weight: 520;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  text-decoration-line: underline
+}
+
 /* .btn {
   color: #CAEBF2;
   background:#cadde1;
   border: 1px solid white;
 } */
 
-#intro{
-  width: 900px;
-  text-align: left;
-}
 
 #Shop_local{
   font-size: 70px;
@@ -37,7 +41,8 @@ h1{
 
 #into_paragraph {
   text-align: center;
-  font-weight:475;
+  font-weight:450;
+  font-size: 15px;
 }
 
 #buttons{
@@ -117,21 +122,12 @@ hr {
 }
 
 #navbar{
-  height: 100px;
+  height: 90px;
   opacity: .90;
   background-color: #CAEBF2
 }
 
 
-#tags{
-  background: grey;
-  margin-top: 3%;
-}
-/* 
-#all-tags{
-  margin: 2%;
-  padding: 1%;
-} */
 
 #map{
   margin: 3%;
@@ -144,15 +140,95 @@ hr {
 
 /* Emma making sure people know this is a button, feel free to change colors */
 .address:hover {
-  color: purple;
+  color:#1788a5;
+  font-weight: bold;
 }
 
-.inventory{
-  border: solid 1px;   
+.inventory{  
   background-color: #343a40;
   opacity: .70;
   color: #A9A9A9;
   border-radius: 15px;
-  height: 50px;
+  height: 55px;
   vertical-align: middle;
+  font-size: 20px;
+  color: white;
+}
+#inventory-body{
+  background-color: #343a40;
+  color: white;
+}
+
+.itemRow{
+  border-radius: 20px;
+}
+
+#item-search{
+  margin-top: 5%;
+  margin-bottom: 10%;
+}
+
+#tags{
+  margin: 0.25%;
+  padding: 1%;
+}
+.unselected{
+  display: inline-block;
+  padding: 9px 12px;
+  padding-top: 7px;
+  margin-bottom: 0;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  border-radius: 3px;
+  border-radius: 3px;
+  border-radius: 3px;
+  background-image: none !important;
+  border: none;
+  text-shadow: none;
+  box-shadow: none;
+  transition: all 0.12s linear 0s !important;
+  font: 14px/20px "Helvetica Neue",Helvetica,Arial,sans-serif;
+  background-color: #343a40;
+  color: white;
+  margin: 1%;
+  opacity: .70;
+}
+
+.selected{
+  display: inline-block;
+  padding: 9px 12px;
+  padding-top: 7px;
+  margin-bottom: 0;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  border-radius: 3px;
+  border-radius: 3px;
+  border-radius: 3px;
+  background-image: none !important;
+  border: none;
+  text-shadow: none;
+  box-shadow: none;
+  transition: all 0.12s linear 0s !important;
+  font: 14px/20px "Helvetica Neue",Helvetica,Arial,sans-serif;
+  background-color: #ffc107;
+  color:#212529;
+  margin: 1%;
+}
+
+#item{
+  width: 25%;
+}
+
+.desc{
+  color: #ffc107;
+}
+
+.table th { 
+  border-top: none; 
 }
