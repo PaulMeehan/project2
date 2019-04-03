@@ -19,8 +19,8 @@
 
       <!--Search bar-->
 <form>
-  <input class="form-control form-control-lg" type="text" placeholder="Enter Product" id="product-search">
-  <button type="submit" class="btn btn-warning">Search</button>
+  <input class="form-control form-control-lg" type="text" placeholder="Enter Tags" id="product-search">
+  <button class="btn btn-warning" id ="tag-search-button">Search</button>
 </form>
 
 
@@ -35,6 +35,10 @@
     </div>
 </div>
 
+<form>
+  <button class="btn btn-warning" id ="item-search">Search Items</button>
+</form>
+
 <!--Google Maps-->
 <iframe
   id= "map"
@@ -46,10 +50,12 @@
 
 
 
+
+
+
       {{/if}}
       <h5 id="login-err-msg"></h5>
     </div>
   </div>
 </div>
-
 {{> modal/login-block}}

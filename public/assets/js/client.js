@@ -1,60 +1,53 @@
-//api serarch from client side
-
-    // this is supposed to retrieve the data from a search
-  $('button').click((event) => {
-    const newSearch = {
-      itemName: itemName,
-      category: category,
-      description: description,
-      price: price
-    };
-    $.ajax('/api/inventory/search', {
-      type: 'GET',
-      data: newSearch
-    }).then(() => {
+let tags = [];
+$(document).ready(function () {
+  console.log('hello');
+  $('#tag-search-button').click((event) => {
+    console.log('clicked');
+    event.preventDefault();
+    const newSearch = $('#product-search').val();
+    const query = '/api/tags/' + newSearch;
+    console.log(query);
+    $.ajax(query, {
+      type: 'GET'
+    }).then(response => {
       console.log('searching');
       // Reload the page to get the updated list
-      location.reload();
+      console.log(response);
+      $("#all-tags").html('');
+      for (let i = 0; i < response.length; i++) {
+        //only make new tag if you don't already have that tag
+        if (!tags.includes(response[i].id)) {
+          let newTag = $('<button>').text(response[i].description);
+          newTag.attr('data-value', response[i].id);
+          newTag.addClass('tag unselected');
+          $('#tags').append(newTag);
+        }
+      }
     });
   });
 
-  // this is supposed to post an item to a store
-  $('.newItem').click(()=> {
-    const newItem = {
-      name: $('#itemName').val().trim(),
-      category: $('#itemCategory').val().trim(),
-      description: $('#itemDescription').val().trim(),
-      price: $('#price').val().trim()
-    };
-    $.ajax('/api/inventory', {
-      type: 'POST',
-      data: newItem
-    }).then(() => {
-      console.log('added item' + id);
-      // Reload the page to get the updated list
-      location.reload();
+  $('#item-search').click((event) => {
+    event.preventDefault();
+    let query = '/api/inventory/search/t='
+    query += tags.join(",");
+    $.get(query).then(response => {
+        console.log(response);
     });
   });
+});
 
-  // this is the delete item section
-  $('.delete-item').on('click',(event) => {
-    const id = $(this).data('id');
+$(document).on('click', '.unselected', function () {
+  let button = $(this);
+  button.removeClass('unselected');
+  button.addClass('selected');
+  $('#selected-tags').append(button);
+  tags.push(button.attr('data-value'));
+});
 
-    $.ajax('/api/inventory/' + id, {
-      type: 'DELETE'
-    }).then(() => {
-      console.log('deleted item', id);
-      // Reload the page to get the updated list
-      location.reload();
-    });
-  });
-
-  // this is the item update section
-  $.ajax('/api/inventory/' + id, {
-    type: 'PUT',
-    data: newItem
-  }).then(() => {
-    console.log('updated' + id);
-    // Reload the page to get the updated list
-    location.reload();
-  })
+$(document).on('click', '.selected', function () {
+  let button = $(this);
+  button.removeClass('selected');
+  button.addClass('unselected');
+  $('#all-tags').append(button);
+  tags = tags.filter(e => e !== button.attr('data-value'));
+});
