@@ -4,9 +4,9 @@ INSERT INTO Users (firstName, lastName, email, password, isAdmin)
 VALUES ("Jane", "Jobs", "j@j.co", "$2b$10$afGmlGCU0AGEzZBILPyPWOfSclxjMxKocB8QXv8CqhN73IHUUp7Gi", false);
 
 INSERT INTO stores (storeName, email, hours, address, url, createdAt, updatedAt) values 
-("Bob's Bike Rack", "bobsmith@xmail.com", "9:00 - 5:00 Mon-Sat", "123 Main St. Durham NC 27715", "www.bobsbikerack.com", now(), now()),
-("Outdoor Adventures", "adventuresawait@xmail.com", "9:00 - 9:00 Mon-Fri, 9:00 - 6:00 Sat", "33 Clark St. Cary NC 27519", "www.outdooradventures.com", now(), now()),
-("Health And Fitness", "haf@xmail.com", "6:00 - 5:00 Mon-Sat", "100 Kildaire Farms Rd. Cary NC 27511", "www.healthandfitness.com", now(), now());
+("Bob's Bike Rack", "bobsmith@xmail.com", "9:00 - 5:00 Mon-Sat", "123 Main St. Durham NC 27715", "http://www.bobsbikerack.com", now(), now()),
+("Outdoor Adventures", "adventuresawait@xmail.com", "9:00 - 9:00 Mon-Fri, 9:00 - 6:00 Sat", "33 Clark St. Cary NC 27519", "http://www.outdooradventures.com", now(), now()),
+("Health And Fitness", "haf@xmail.com", "6:00 - 5:00 Mon-Sat", "100 Kildaire Farms Rd. Cary NC 27511", "http://www.healthandfitness.com", now(), now());
 
 INSERT INTO inventories (itemName, category, description, price, StoreId, createdAt, updatedAt) values 
 ("Schwinn S150", "touring", "27 inch, 12 speed touring bike", 175.00, 1, now(), now()),
