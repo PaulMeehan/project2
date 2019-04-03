@@ -139,3 +139,13 @@ hr {
 #map{
   margin: 3%;
 }
+
+/* Emma Adding things neccessary for function */
+.hidden {
+  display: none;
+}
+
+/* Emma making sure people know this is a button, feel free to change colors */
+.address:hover {
+  color: purple;
+}
