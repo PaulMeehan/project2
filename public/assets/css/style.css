@@ -127,8 +127,6 @@ hr {
   background-color: #CAEBF2
 }
 
-
-
 #map{
   margin: 3%;
 }
@@ -166,6 +164,7 @@ hr {
 #item-search{
   margin-top: 5%;
   margin-bottom: 10%;
+  width: 250px;
 }
 
 #tags{
