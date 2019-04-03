@@ -2,25 +2,25 @@
 // $(document).ready(function () {
 
 //   // this is supposed to post an item to a store
-//   $('.newItem').click(() => {
-//     const newItem = {
-//       name: $('#itemName').val().trim(),
-//       category: $('#itemCategory').val().trim(),
-//       description: $('#itemDescription').val().trim(),
-//       price: $('#price').val().trim()
-//     };
-//     $.ajax('/api/inventory', {
-//       type: 'POST',
-//       data: newItem
-//     }).then(() => {
-//       console.log('added item' + id);
-//       // Reload the page to get the updated list
-//       location.reload();
-//     });
-//   });
+$(document).on('click', '.newItem', () => {
+  const newItem = {
+    itemName: $('#new-name').val().trim(),
+    category: $('#new-category').val().trim(),
+    description: $('#new-description').val().trim(),
+    price: $('#new-price').val().trim()
+  };
+  $.ajax('/api/inventory', {
+    type: 'POST',
+    data: newItem
+  }).then(item => {
+    console.log('added item' + item.id);
+    // Reload the page to get the updated list
+    location.reload();
+  });
+});
 
 //   // this is the delete item section
-$('.delete-item').on('click', (event) => {
+$(document).on('click', '.delete-item', (event) => {
   const id = $(event.target).attr('data-item');
 
   $.ajax('/api/inventory/' + id, {

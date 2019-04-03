@@ -115,7 +115,7 @@ module.exports = (db, authController) => {
           category: req.body.category,
           description: req.body.description,
           price: req.body.price,
-          storeId: storeId
+          StoreId: storeId
         }, {
           include: [{
             model: db.Tag
@@ -124,6 +124,7 @@ module.exports = (db, authController) => {
           res.status(200).json(inventory);
         }).catch(error => {
           res.status(400).json({ message: error.message });
+          throw error;          
         });
       });
     },

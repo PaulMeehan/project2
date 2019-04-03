@@ -33,14 +33,14 @@
     <tbody id = 'inventory-body'>
         {{#each items}}
         <tr>
-            <td><input type='text' value="{{itemName}}" id = "name{{id}}"></th>
-            <td><input type='text' value="{{category}}" id = "category{{id}}"></th>
-            <td><input type='text' value="{{price}}" id = "price{{id}}"></th>
-            <td><button class = 'update-item' data-item = {{id}}><i class="fas fa-check" data-item = {{id}}></i></button><button class = 'delete-item' data-item = {{id}}><i class="fas fa-times" data-item = {{id}}></i></button></th>
+            <td><input type='text' value="{{itemName}}" id = "name{{id}}"></td>
+            <td><input type='text' value="{{category}}" id = "category{{id}}"></td>
+            <td><input type='text' value="{{price}}" id = "price{{id}}"></td>
+            <td><button class = 'update-item' data-item = {{id}}><i class="fas fa-check" data-item = {{id}}></i></button><button class = 'delete-item' data-item = {{id}}><i class="fas fa-times" data-item = {{id}}></i></button></td>
         </tr>
         <tr class = 'itemDesc'>
             <td colspan=3> <strong>Description: </strong><input class= 'desc-text-box' type='text' value="{{description}}" id = "description{{id}}"></th>
-            <td><button class = 'view-tags' data-item = {{id}}>View Tags</button></th>
+            <td><button class = 'view-tags' data-item = {{id}}>View Tags</button></td>
         </tr>
         <tr class = "hidden tag-div" id = 'tag-div{{id}}'>
             <td colspan=2></td>
@@ -51,6 +51,18 @@
             </td>
         </tr>
         {{/each}}
+        <tr>
+            <th colspan=4><h3 class ='new-item-div'>Add A New Item</h3></th>
+        </tr>
+        <tr>
+            <td><input type='text' placeholder="Item Name" id = "new-name"></td>
+            <td><input type='text' placeholder="Category" id = "new-category"></td>
+            <td><input type='text' placeholder="Price" id = "new-price"></td>
+            <td><button class = 'newItem' ><i class="fas fa-check" data-item = {{id}}></i></button></td>
+        </tr>
+        <tr class = 'itemDesc'>
+            <td colspan=3> <strong>Description: </strong><input class= 'desc-text-box' type='text' placeholder="Description" id = "new-description"></td>
+        </tr>
     </tbody>
     </table>
     </div>

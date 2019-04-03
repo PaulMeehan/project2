@@ -140,6 +140,10 @@ hr {
   margin: 3%;
 }
 
+.new-item-div {
+  text-align:center;
+}
+
 .itemDesc {
   padding:5px;
 }
