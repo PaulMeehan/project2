@@ -26,8 +26,10 @@
         <tr>
         <th scope="col">Item</th>
         <th scope="col">Category</th>
+        <th scope="col">Description</th>
         <th scope="col">Price</th>
         <th scope="col">Update</th>
+        <th scope="col">Tags</th>
         </tr>
     </thead>
     <tbody id = 'inventory-body'>
@@ -35,24 +37,35 @@
         <tr>
             <td><input type='text' value="{{itemName}}" id = "name{{id}}"></td>
             <td><input type='text' value="{{category}}" id = "category{{id}}"></td>
-            <td><input type='text' value="{{price}}" id = "price{{id}}"></td>
+            <td><input type='text' value="{{description}}" id = "description{{id}}"></td>
+            <td><input class ='price' type='text' value="{{price}}" id = "price{{id}}"></td>
             <td><button class = 'update-item' data-item = {{id}}><i class="fas fa-check" data-item = {{id}}></i></button><button class = 'delete-item' data-item = {{id}}><i class="fas fa-times" data-item = {{id}}></i></button></td>
+            <td><button class = 'view-tags' data-item = {{id}}>View</button></td>
         </tr>
-        <tr class = 'itemDesc'>
-            <td colspan=3> <strong>Description: </strong><input class= 'desc-text-box' type='text' value="{{description}}" id = "description{{id}}"></th>
-            <td><button class = 'view-tags' data-item = {{id}}>View Tags</button></td>
-        </tr>
+        {{!-- <tr class = 'itemDesc'>
+        </tr> --}}
         <tr class = "hidden tag-div" id = 'tag-div{{id}}'>
-            <td colspan=2></td>
+            <td colspan=1>
+                <input class = 'tag-search' type ='search' placeholder ='search for tags' id = 'search{{id}}' data-item={{id}}>
+                <div id = 'new-tags{{id}}'></div>
+            </td>
+            <td colspan=1>
+                <button class = 'addTag hidden' id="addTag{{id}}" data-item={{id}}>Create Tag</button>
+            </td>
             <td colspan=2>
                 {{#each Tags}}
-                    <button class ="tag">{{description}}</button>
+                    <button class ="tag current" data-tag={{id}} data-item={{../id}}>{{description}}</button>
                 {{/each}}
+            </td>
+            <td colspan=2>
+                <button class = 'update-tags' data-item={{id}} data-currentTags = "{{#each Tags}}{{id}},{{/each}}">
+                    Update Tags
+                </button>
             </td>
         </tr>
         {{/each}}
         <tr>
-            <th colspan=4><h3 class ='new-item-div'>Add A New Item</h3></th>
+            <th colspan=4><h3 class ='new-item-div' >Add A New Item</h3></th>
         </tr>
         <tr>
             <td><input type='text' placeholder="Item Name" id = "new-name"></td>

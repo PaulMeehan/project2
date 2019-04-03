@@ -51,26 +51,31 @@ module.exports = (db) => {
         where: {
           id: id
         }
-        // },
-        // include: [{
-        //   model: db.Tag,
-        //   through: {
-        //     attributes: ['createdAt']
-        //   }
-        // }]
       }).then(item => {
         db.Tag.findAll({
           where: {
             id: {
-              $in: req.body.tags
+              $in: req.body.addTags
             }
           }
         }).then(tags => {
           item.addTags(tags, { through: {} });
-          res.json(tags);
+          db.Tag.findAll({
+            where: {
+              id: {
+                $in: req.body.removeTags
+              }
+            }
+          }).then(tags => {
+            item.removeTags(tags,{ through: {}});
+            res.json(tags);
+          }).catch(error => {
+            res.status(404).json(error);
+          });
         }).catch(error => {
           res.status(404).json(error);
         });
+        
       }).catch(error => {
         res.status(404).json({ message: 'No inventory found' });
       });

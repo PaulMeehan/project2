@@ -57,3 +57,11 @@ $(document).on('click', '.update-item', (event) => {
     location.reload();
   });
 });
+
+//  Working with Tags
+$(document).on('search','.tag-search', event => {
+  let tag =$(event.target).val().trim();
+  $.get('/api/tags/'+tag).then(response => {
+    console.log(response);
+  });
+});
