@@ -33,9 +33,9 @@ $(document).on('click', '.delete-item', (event) => {
 $(document).on('click', '.view-tags', (event) => {
   let id = $(event.target).attr('data-item');
   tagList[id] = {
-    currentTags: $('#update-tags' + id).attr('data-currenttags').join(','),
-    addTags: [],
-    removeTags: []
+    currentTags: $('#update-tags' + id).attr('data-currenttags').split(','),
+    addTags: [''],
+    removeTags: ['']
   };
   let tagDiv = $('#tag-div' + id);
   tagDiv.removeClass('hidden');
@@ -64,8 +64,8 @@ $(document).on('click', '.update-item', (event) => {
 $(document).on('search', '.tag-search', event => {
   let tag = $(event.target).val().trim();
   let id = $(event.target).attr('data-item');
-  let currentTags = $('#update-tags' + id).attr('data-currenttags').split(',');
-  let addTags = $('#update-tags' + id).attr('data-addtags').split(',');
+  let currentTags = tagList[id].currentTags;
+  let addTags = tagList[id].addTags;
   $.get('/api/tags/' + tag).then(response => {
     for (let i = 0; i < response.length; i++) {
       let tagId = response[i].id;
@@ -89,17 +89,19 @@ $(document).on('click', '.unselected', event => {
   let itemId = $(event.target).attr('data-item');
   let tagId = $(event.target).attr('data-tag');
   $(event.target).removeClass('unselected');
-  let addTags = $('#update-tags' + itemId).attr('data-addtags').split(',');
-  let removeTags = $('#update-tags' + itemId).attr('data-removetags').split(',');
+  let addTags = tagList[itemId].addTags;
+  let removeTags = tagList[itemId].removeTags;
   //  if it's a tag we were going to remove, just remove it from the list
   if (removeTags.includes(tagId)) {
-    removeTags = removeTags.filter(e => e !== tagId || '');
-    $('#update-tags' + itemId).attr('data-addtags', removeTags.join(','));
+    removeTags = removeTags.filter(e => e !== tagId);
+    tagList[itemId].removeTags = removeTags;
+    // $('#update-tags' + itemId).attr('data-addtags', removeTags.join(','));
     $(event.target).addClass('current');
   } else {
     //  it's a tag we want to add
     addTags.push(tagId);
-    $('#update-tags' + itemId).attr('data-addtags', addTags.join(','));
+    tagList[itemId].addTags = addTags;
+    // $('#update-tags' + itemId).attr('data-addtags', addTags.join(','));
     $(event.target).addClass('selected');
   }
   $('#current-tags' + itemId).append($(event.target));
@@ -114,10 +116,10 @@ $(document).on('click', '.selected', event => {
   $(event.target).addClass('unselected');
 
   //  remove it from the list of tags to be added
-  let addTags = $('#update-tags' + itemId).attr('data-addtags').split(',');
-  addTags = addTags.filter(e => e !== tagId || '');
-  $('#update-tags' + itemId).attr('data-addtags', addTags.join(','));
-
+  let addTags = tagList[itemId].addTags;
+  addTags = addTags.filter(e => e !== tagId);
+  // $('#update-tags' + itemId).attr('data-addtags', addTags.join(','));
+  tagList[itemId].addTags = addTags;
   //  change location
   $('#new-tags' + itemId).append($(event.target));
 });
@@ -129,9 +131,10 @@ $(document).on('click', '.current', event => {
   $(event.target).addClass('unselected');
 
   //  remove it from the list of tags to be added
-  let removeTags = $('#update-tags' + itemId).attr('data-addtags').split(',');
-  removeTags.push(tagId);
-  $('#update-tags' + itemId).attr('data-removetags', removeTags.join(','));
+  tagList[itemId].removeTags.push(tagId);
+  // removeTags.push(tagId);
+
+  // $('#update-tags' + itemId).attr('data-removetags', removeTags.join(','));
 
   //  change location
   $('#new-tags' + itemId).append($(event.target));
@@ -140,8 +143,8 @@ $(document).on('click', '.current', event => {
 //  Update Tags
 $(document).on('click', '.update-tags', event => {
   let itemId = $(event.target).attr('data-item');
-  let newTags = $(event.target).attr('data-addtags').split(',');
-  let oldTags = $(event.target).attr('data-removetags').split(',');
+  let newTags = tagList[itemId].addTags;
+  let oldTags = tagList[itemId].removeTags;
   let body = {
     addTags: newTags,
     removeTags: oldTags
