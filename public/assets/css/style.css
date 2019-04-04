@@ -8,6 +8,10 @@ body {
   background: rgba(0,0,0,0);
 }
 
+#intro{
+  margin:1%;
+}
+
 .modal {
   color: black;
 }
@@ -168,14 +172,15 @@ hr {
 }
 
 .inventory{  
-  background-color: #343a40;
+  background-color: #212528;
   opacity: .70;
   color: #A9A9A9;
-  border-radius: 15px;
+  /* border-radius: 15px; */
   height: 55px;
   vertical-align: middle;
   font-size: 18px;
   color: white;
+  text-align:center
 }
 #inventory-body{
   background-color: #343a40;
@@ -360,15 +365,18 @@ hr {
   cursor: pointer;
 }
 
-/* .desc-text-box{
-  width: 96%;
-  height: 50px;
-  vertical-align:top;
-}
-#description{
-  float: left;
-} */
-
 .newItem{
   float: left;
+}
+
+#tag-headers{
+  text-align: center;
+}
+
+#search-items-button-div{
+  text-align: center;
+}
+
+h5{
+  font-weight: bold;
 }
