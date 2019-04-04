@@ -360,11 +360,15 @@ hr {
   cursor: pointer;
 }
 
-.desc-text-box{
+/* .desc-text-box{
   width: 96%;
   height: 50px;
   vertical-align:top;
 }
 #description{
+  float: left;
+} */
+
+.newItem{
   float: left;
 }
