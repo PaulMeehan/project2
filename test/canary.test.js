@@ -9,7 +9,7 @@ chai.use(chaiHttp);
 
 var request;
 
-describe('GET /api/inventory/t=1', function () {
+describe('GET /api/inventory/search/t=1', function () {
   beforeEach(function () {
     request = chai.request(server);
     return db.sequelize.sync({ force: true });
@@ -18,7 +18,7 @@ describe('GET /api/inventory/t=1', function () {
   it('should send back all inventory associated with the first tag', function (done) {
     // POST the request body to the server
     request
-      .get('/api/inventory/t=1')
+      .get('/api/inventory/search/t=1')
       .end(function (err, res) {
         console.log('got here');
         let responseStatus = res.status;
