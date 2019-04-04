@@ -380,3 +380,7 @@ hr {
 h5{
   font-weight: bold;
 }
+
+#user-update-buttons{
+  text-align: center;
+}

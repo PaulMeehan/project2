@@ -2,10 +2,10 @@
 
 <div class="container">
   <header align="center" class="header-wrap">
-    <h1>View or update your user</h1>
+    <h1><strong>View or update your user</strong></h1>
     <div class="userId">
       <h3>Welcome, {{userInfo.firstName}}</h3>
-      <h5 id="user-number" data-useremail="{{userInfo.email}}">Account email: {{userInfo.email}}</h5>
+      {{!-- <h5 id="user-number" data-useremail="{{userInfo.email}}">Account email: {{userInfo.email}}</h5> --}}
     </div>
     <h3 id="update-err-msg"></h3>
   </header>
@@ -33,12 +33,12 @@
       </div>
     </div>
 
-    <div>
-      <button type="submit" id="update-user" data-id="{{userInfo.id}}" class="btn btn-primary">Update</button>
+    <div id="user-update-buttons">
+      <button type="submit" id="update-user" data-id="{{userInfo.id}}" class="btn btn-warning">Update</button>
       {{#unless userInfo.isAdmin}}
-        <button type="submit" id="delete-user" class="btn btn-primary">Delete</button>
+        <button type="submit" id="delete-user" class="btn btn-secondary">Delete</button>
       {{/unless}}
-      <button type="submit" id="view-user" data-id="{{userInfo.id}}" class="btn btn-primary">Refresh</button>
+      <button type="submit" id="view-user" data-id="{{userInfo.id}}" class="btn btn-info">Refresh</button>
     </div>
   </form>
 
