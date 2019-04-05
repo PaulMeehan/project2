@@ -88,7 +88,7 @@ module.exports = (passport, db) => {
       });
     },
     //  gets the store associated with the current logged in user
-    getUserStore: (req, callback) => {
+    getUserStore: (req, res, callback) => {
       if (req.isAuthenticated()) {
         db.User.findOne({
           where: {
