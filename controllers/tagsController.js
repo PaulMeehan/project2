@@ -20,7 +20,7 @@ module.exports = (db, authController) => {
     addTag: (req, res) => {
       const tagName = req.body.tagName;
       console.log(req.body);
-      authController.getUserStore(req, function (storeId) {
+      authController.getUserStore(req, res, function (storeId) {
         db.Inventory.findOne({
           where: {
             id: req.params.id,
@@ -51,7 +51,7 @@ module.exports = (db, authController) => {
 
     updateTags: (req, res) => {
       let id = parseInt(req.params.id);
-      authController.getUserStore(req, function (storeId) {
+      authController.getUserStore(req, res, function (storeId) {
         db.Inventory.findOne({
           where: {
             id: id,

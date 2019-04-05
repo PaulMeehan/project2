@@ -9,36 +9,40 @@ chai.use(chaiHttp);
 
 var request;
 
-describe('GET /api/inventory/search/t=1', function () {
+describe('POST /api/inventory', function () {
   beforeEach(function () {
     request = chai.request(server);
     return db.sequelize.sync({ force: true });
   });
 
-  it('should send back all inventory associated with the first tag', function (done) {
+  it('should send back an error message because the user is not logged in', function (done) {
     // POST the request body to the server
     request
-      .get('/api/inventory/search/t=1')
+      .post('/api/inventory')
+      .send({
+        itemName: '1 Pint Mint Chocolate Chip',
+        category: 'ice cream',
+        description: 'The best Ice Cream ever made. May contain nuts',
+        price: 4.99,
+        StoreId: 1
+      })
       .end(function (err, res) {
         console.log('got here');
         let responseStatus = res.status;
         let responseBody = res.body;
+        console.log(res.text);
 
         // Run assertions on the response
 
         expect(err).to.be.null;
 
-        expect(responseStatus).to.equal(200);
+        expect(responseStatus).to.equal(400);
 
         expect(responseBody)
           .to.be.an('object')
-          .that.includes(
-            { itemName: '1 Pint Cookie Dough',
-              category: 'ice cream',
-              description: 'The 2nd best Ice Cream ever made. May contain nuts',
-              price: 4.99,
-              StoreId: 1 });
-
+          .that.includes({
+            'message': 'Error: user must logged in to manage inventory'
+          });
         // The `done` function is used to end any asynchronous tests
         done();
       });

@@ -15,20 +15,15 @@ module.exports = (db) => {
         description: 'ice cream'
       }).then(tag => {
         inventory.setTags([tag]);
-      });
-    });
-
-    db.Inventory.create({
-      itemName: '1 Pint Cookie Dough',
-      category: 'ice cream',
-      description: 'The 2nd best Ice Cream ever made. May contain nuts',
-      price: 4.99,
-      StoreId: 1
-    }).then(inventory => {
-      db.Tag.create({
-        description: 'ice cream'
-      }).then(tag => {
-        inventory.setTags([tag]);
+        db.Inventory.create({
+          itemName: '1 Pint Cookie Dough',
+          category: 'ice cream',
+          description: 'The 2nd best Ice Cream ever made. May contain nuts',
+          price: 4.99,
+          StoreId: 1
+        }).then(inventory => {
+          inventory.setTags([tag]);
+        });
       });
     });
 

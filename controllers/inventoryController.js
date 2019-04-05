@@ -22,6 +22,7 @@ module.exports = (db, authController) => {
     },
 
     search: (req, res) => {
+      console.log('got to search');
       const query = req.params.query;
       let conditions;
       let search = {
@@ -82,6 +83,7 @@ module.exports = (db, authController) => {
           .then(response => {
             //  if there aren't any items with all these tags return empty
             if (response.length < 1) {
+              console.log("SENDING EMPTY ARRAY");
               return res.json([]);
             } else {
               const itemIDs = [];
@@ -109,7 +111,7 @@ module.exports = (db, authController) => {
 
     createItem: (req, res) => {
     //  only certain logged in users can create items
-      authController.getUserStore(req, function (storeId) {
+      authController.getUserStore(req, res, function (storeId) {
         db.Inventory.create({
           itemName: req.body.itemName,
           category: req.body.category,
@@ -130,7 +132,7 @@ module.exports = (db, authController) => {
     },
 
     updateItem: (req, res) => {
-      authController.getUserStore(req, function (storeId) {
+      authController.getUserStore(req, res, function (storeId) {
         db.Inventory.update({
           itemName: req.body.itemName,
           category: req.body.category,
@@ -151,7 +153,7 @@ module.exports = (db, authController) => {
     },
 
     deleteItem: (req, res) => {
-      authController.getUserStore(req, storeId => {
+      authController.getUserStore(req, res, storeId => {
         db.Inventory.destroy({
           where: {
             id: req.params.id,
