@@ -13,7 +13,7 @@ const db = require('./models');
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 app.use(morgan('dev')); // Hook up the HTTP logger
 app.use(express.static('public'));
@@ -28,7 +28,7 @@ app.use('/api', require('./routes/apiRoutes')(passport, db));
 
 // Secure express app
 app.use(helmet.hsts({
-  maxAge: moment.duration(1, 'years').asMilliseconds(),
+  maxAge: moment.duration(1, 'years').asMilliseconds()
 }));
 
 // catch 404 and forward to error handler
@@ -40,12 +40,24 @@ if (app.get('env') !== 'development') {
   });
 }
 
+const syncOptions = {
+  force: process.env.FORCE_SYNC === 'true'
+};
+
+if (app.get('env') === 'test') {
+  syncOptions.force = true;
+}
+
 db.sequelize.sync({ force: process.env.FORCE_SYNC === 'true' }).then(() => {
-  if(process.env.FORCE_SYNC === 'true') {
+  if (syncOptions.force || app.get('env') === 'test') {
+    // console.log("RUNNIG SEEDS");
     require('./db/seed')(db);
   }
-
-  app.listen(PORT, () => {
-    console.log(`App listening on port: ${PORT}`);
-  });  
+  if (!module.parent) {
+    app.listen(PORT, () => {
+      console.log(`App listening on port: ${PORT}`);
+    });
+  }
 });
+
+module.exports = app;

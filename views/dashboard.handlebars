@@ -1,47 +1,109 @@
 {{> nav/nav-block}}
 
+<!--Main Container-->
 <div id="main-container" class="container">
   <div class="jumbotron text-center header-wrap" align="center" id="intro">
-    <p class="lead" id="Shop_local"><strong>Keep it Local. Shop Local.</strong></p>
-    <br>
+   
+    <!--Log in error-->
+  <h5 id="login-err-msg"></h5>
 
-    <div>
-      {{#if isloggedin}}
-        You are logged in as {{user.firstName}}
-        <a href="/logout"> <button type="btn" class="btn">Logout</button></a>
-      {{else}}
-      <div id= "into_paragraph">
-        <p>Shopally is a proud supporter of locally owned businesses. Simply conduct a search for items products, and based on your location Shopally will provide an inventory listing of all in-stock products.</p>
-        <br>
+  <!--Header--> 
+        <p class="lead" id="Shop_local"><strong>Keep it Local. Shop Local.</strong></p>
+  <!--Intro Paragraph--> 
+        <div>
+          <div id= "into_paragraph">
+            <p>Simply conduct a search using tags for a product. Once all tags have been searched, click on the tag to select. Shopally will find your items and provide an inventory listing of all in-stock products from your favorite local shops. What to go now? Just click the store name!</p>
+          </div>
+        </div>
+  <!--END Jumbo trom Div-->
+  </div> 
+
+<!--Search bar-->
+  <form>
+    <div class="input-group mb-3">
+      <input type="text" class="form-control form-control-lg" placeholder="Enter Tags" aria-label="Enter Tags" aria-describedby="button-addon2" id="product-search">
+    <div class="input-group-append">
+      <button class="btn btn-warning" type="button" id="tag-search-button"><i class="fas fa-search"></i></button>
+    </div>
+    </div>
+  </form>
+
+<!--Tag Headers-->
+  <div class="row" id="tag-headers">
+      <div class="col-md-6 col-left" id="tags-search-header">
+          <h2>Tags Searched</h2>
       </div>
-
-
-
-      <!--Search bar-->
-<form>
-  <input class="form-control form-control-lg" type="text" placeholder="Enter Product" id="product-search">
-  <button type="submit" class="btn btn-warning">Search</button>
-</form>
-
+        
+      <div class="col-md-6 col-right" id="selected-tags">
+          <h2>Selected Tags</h2>  
+      </div>
+  </div>
 
 
 <!--Tags-->
-<div class="row" id="tags">
-    <div class="col-md-6 col-left" id="all-tags">
-    </div>
+  <div class="row" id="tags">
+      <div class="col-md-6 col-left" id="all-tags">
+      </div>
 
-<!--sSelected Tags-->
+<!--Selected Tags-->
     <div class="col-md-6 col-right" id="selected-tags">
     </div>
+  </div>
+
+<!--item search button-->
+  <div class="row" id="search-items-button-div">
+        <div class="col-md-12 ">
+            <button class="btn btn-warning" id ="item-search">Find my Items<i class="fas fa-shopping-cart" id="shopping cart"></i></button>
+      </div>     
+  </div>
+
+<!--Inventory Table-->
+<div class = "inventory">
+  <table class="table table-hover">
+  {{!-- <thead> --}}
+    {{!-- <tr> --}}
+      <th scope="col" id="item">Item</th>
+      <th scope="col">Category</th>
+      <th scope="col">Price</th>
+      <th scope="col">Store</th>
+    {{!-- </tr> --}}
+  {{!-- </thead> --}}
+    <tbody id = 'inventory-body'>
+    </tbody>
+  </table>
 </div>
 
 
-
-
-      {{/if}}
-      <h5 id="login-err-msg"></h5>
+<!-- Map Modal -->
+<div class="modal fade" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="mapModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="MapModalTitle">You can find your items here:</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <iframe
+            id= "map"
+            width="400"
+            height="250"
+            frameborder="0" style="border:0"
+            src="  https://www.google.com/maps/embed/v1/place?key=AIzaSyAPoB0qxu8vfVb1NJ0ZrrLIUHaiyOZcJWg&q=Eiffel+Tower,Paris+France" allowfullscreen>
+        </iframe>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button id="go-to-store" type="button" class="btn btn-primary">Go to Site</button>
+      </div>
     </div>
   </div>
 </div>
 
+  
+	<script src = "assets/js/client.js"></script>
+
+<!--End Container Div-->
+</div>
 {{> modal/login-block}}

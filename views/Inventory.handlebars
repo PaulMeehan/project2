@@ -1,0 +1,111 @@
+{{> nav/nav-block}}
+
+<div id="main-container" class="container">
+  <header align="center" class="header-wrap">
+    <h1><strong>View or update your Inventory</strong></h1>
+    <div class="userId">
+      <h3>Welcome, {{userInfo.firstName}}</h3>
+      <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#AccountDetails" id="Account-details">Account Details</button>
+      
+
+<!--Tags-->
+    <div class="row" id="tags">
+        <div class="col-md-6 col-left" id="all-tags">
+        </div>
+
+<!--Selected Tags-->
+        <div class="col-md-6 col-right" id="selected-tags">
+        </div>
+    </div>
+
+    <div class = "inventory">
+    <table class="table">
+    <thead>
+        <tr>
+        <th scope="col">Item</th>
+        <th scope="col">Category</th>
+        <th scope="col">Description</th>
+        <th scope="col">Price</th>
+        <th scope="col">Update</th>
+        <th scope="col">Tags</th>
+        </tr>
+    </thead>
+    <tbody id = 'inventory-body'>
+        {{#each items}}
+        <tr>
+            <td><input type='text' value="{{itemName}}" id = "name{{id}}"></td>
+            <td><input type='text' value="{{category}}" id = "category{{id}}"></td>
+            <td><input type='text' value="{{description}}" id = "description{{id}}"></td>
+            <td><input class ='price' type='text' value="{{price}}" id = "price{{id}}"></td>
+            <td><button class = 'update-item' data-item = {{id}}><i class="fas fa-check" data-item = {{id}}></i></button><button class = 'delete-item' data-item = {{id}}><i class="fas fa-trash-alt" style="color: white"data-item = {{id}}></i></button></td>
+            <td><button class = 'view-tags' data-item = {{id}}>View</button></td>
+        </tr>
+        {{!-- <tr class = 'itemDesc'>
+        </tr> --}}
+        <tr class = "hidden tag-div" id = 'tag-div{{id}}'>
+            <td colspan=1>
+                <input class = 'tag-search' type ='search' placeholder ='search for tags' id = 'search{{id}}' data-item={{id}}>
+                <div id = 'new-tags{{id}}'></div>
+            </td>
+            <td colspan=1>
+                <button class = 'addTag hidden' id="addTag{{id}}" data-item={{id}}>Create Tag</button>
+            </td>
+            <td colspan=2 id ='current-tags{{id}}'>
+                {{#each Tags}}
+                    <button class ="tag current" data-tag={{id}} data-item={{../id}}>{{description}}</button>
+                {{/each}}
+            </td>
+            <td colspan=2>
+                <button class = 'update-tags' id ="update-tags{{id}}" data-item={{id}} data-currentTags = "{{#each Tags}}{{id}},{{/each}}" data-addTags = "" data-removeTags = "">
+                    Update Tags
+                </button>
+            </td>
+        </tr>
+        {{/each}}
+
+ <!--CREATE NEW ITEM-->       
+        <tr>
+            <th colspan=6><h4 class ='new-item-div'>Add A New Item</h4></th>
+        </tr>
+        <tr id="new-item-input-div">
+            <td><input type='text' placeholder="Item Name" id = "new-name"></td>
+            <td><input type='text' placeholder="Category" id = "new-category"></td>
+            <td><input type='text' placeholder="Description" id = "new-description"></td>            
+            <td><input type='text' class ='price' placeholder="Price" id = "new-price"></td>
+            <td colspan = 2><button class = 'newItem' ><i class="fas fa-check" ></i></button></td>
+        </tr>
+    </tbody>
+    </table>
+    </div>
+
+
+
+
+      <h5 id="login-err-msg"></h5>
+    <script src= "assets/js/store.js"></script>
+</div>
+
+
+<!-- Account Details Modal -->
+<div class="modal fade" id="AccountDetails" tabindex="-1" role="dialog" aria-labelledby="AccountDetailsLable" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="AccountDetailsLabl">Account Details for {{userInfo.firstName}} </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h6 id="user-number" data-firstName="{{userInfo.firstName}}" data-lastName="{{userInfo.lastName}}">Name: {{userInfo.firstName}} {{userInfo.lastName}}</h6>
+        <h6 id="user-number" data-useremail="{{userInfo.email}}">Email Address: {{userInfo.email}}</h6>
+        <h6 id="user-number" data-createdAt="{{userInfo.createdAt}}">Member Since: {{userInfo.createdAt}}</h6>
+        <h6 id="user-number" data-storeId="{{userInfo.storeId}}">Store Id: {{userInfo.storeId}}</h6>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+{{> modal/login-block}}

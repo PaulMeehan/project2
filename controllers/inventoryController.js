@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
-module.exports = (db) => {
+module.exports = (db, authController) => {
   return {
 
     findOne: (req, res) => {
@@ -22,6 +22,7 @@ module.exports = (db) => {
     },
 
     search: (req, res) => {
+      console.log('got to search');
       const query = req.params.query;
       let conditions;
       let search = {
@@ -82,6 +83,7 @@ module.exports = (db) => {
           .then(response => {
             //  if there aren't any items with all these tags return empty
             if (response.length < 1) {
+              console.log("SENDING EMPTY ARRAY");
               return res.json([]);
             } else {
               const itemIDs = [];
@@ -106,36 +108,16 @@ module.exports = (db) => {
         });
       }
     },
-    //  returns a callback with the storeId associated with the user
-    authenticate: (req, callback) => {
-      if (req.isAuthenticated()) {
-        db.User.findOne({
-          where: {
-            id: req.session.passport.user.id
-          }
-        }).then(() => {
-          const user = req.session.passport.user;
-          if (user.isStore) {
-            callback(user.StoreId);
-          } else {
-            res.status(400).json({ message: 'Error: user must be associated with a store to manage inventory' });
-          }
-        });
-      } else {
-        //  user isn't logged in
-        res.status(400).json({ message: 'Error: user must logged in to manage inventory' });
-      }
-    },
 
     createItem: (req, res) => {
     //  only certain logged in users can create items
-      authenticate(req, function (storeId) {
+      authController.getUserStore(req, res, function (storeId) {
         db.Inventory.create({
           itemName: req.body.itemName,
           category: req.body.category,
           description: req.body.description,
           price: req.body.price,
-          storeId: storeId
+          StoreId: storeId
         }, {
           include: [{
             model: db.Tag
@@ -144,12 +126,13 @@ module.exports = (db) => {
           res.status(200).json(inventory);
         }).catch(error => {
           res.status(400).json({ message: error.message });
+          throw error;          
         });
       });
     },
 
     updateItem: (req, res) => {
-      authenticate(req, function (storeId) {
+      authController.getUserStore(req, res, function (storeId) {
         db.Inventory.update({
           itemName: req.body.itemName,
           category: req.body.category,
@@ -170,7 +153,7 @@ module.exports = (db) => {
     },
 
     deleteItem: (req, res) => {
-      authenticate(req, storeId => {
+      authController.getUserStore(req, res, storeId => {
         db.Inventory.destroy({
           where: {
             id: req.params.id,

@@ -4,8 +4,8 @@ const ensureAuthenticated = require('../middlewares/ensureAuthenticated');
 module.exports = (passport, db) => {
   const AuthController = require('../controllers/authController')(passport, db);
   const AppController = require('../controllers/appController')();
-  const InventoryController = require('../controllers/inventoryController')(db);
-  const TagsController = require('../controllers/tagsController')(db);
+  const InventoryController = require('../controllers/inventoryController')(db, AuthController);
+  const TagsController = require('../controllers/tagsController')(db, AuthController);
   // Authentication
   router.post('/register', AuthController.register);
   router.post('/login', AuthController.login);
@@ -21,7 +21,7 @@ module.exports = (passport, db) => {
   router.put('/inventory/:id', InventoryController.updateItem);
   router.get('/inventory/search/:query?', InventoryController.search);
   router.get('/inventory/:id', InventoryController.findOne);
-  router.delete('/inventory/:id',InventoryController.deleteItem);
+  router.delete('/inventory/:id', InventoryController.deleteItem);
   // Tags
   router.get('/tags/:query?', TagsController.searchTags);
   router.post('/tags/:id', TagsController.addTag);

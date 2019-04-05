@@ -63,5 +63,33 @@ module.exports = (db) => {
     });
   });
 
+  router.get('/inventory', (req, res) => {
+    if (req.isAuthenticated()) {
+      db.User.findOne({
+        where: {
+          id: req.session.passport.user.id
+        }
+      }).then(() => {
+        const user = {
+          userInfo: req.session.passport.user,
+          isloggedin: req.isAuthenticated()
+        };
+        db.Inventory.findAll({
+          where: {
+            StoreId: user.userInfo.StoreId
+          },
+          include:
+            { model: db.Tag, through: { attributes: [] } }
+        }).then(items => {
+          user.items = items;
+          // res.json(user);
+          res.render('inventory', user);
+        });
+      });
+    } else {
+      res.redirect('/');
+    }
+  });
+
   return router;
 };
