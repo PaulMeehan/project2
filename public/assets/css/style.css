@@ -165,6 +165,10 @@ hr {
   display: none;
 }
 
+.invisible {
+  visibility: 0%;
+}
+
 /* Emma making sure people know this is a button, feel free to change colors */
 .address:hover {
   color:#1788a5;
