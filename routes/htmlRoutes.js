@@ -83,7 +83,7 @@ module.exports = (db) => {
         }).then(items => {
           user.items = items;
           // res.json(user);
-          res.render('inventory', user);
+          res.render('Inventory', user);
         });
       });
     } else {
