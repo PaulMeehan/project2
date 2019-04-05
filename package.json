@@ -7,7 +7,9 @@
     "start": "node server.js",
     "lint": "eslint **/*.js --quiet",
     "fix": "eslint --fix .",
-    "test": "npm run lint && cross-env NODE_ENV=test mocha -u tdd --reporter spec --exit --timeout 15000"
+    "test": "npm run lint && cross-env NODE_ENV=test AUTH_SECRET=test TU=root mocha -u tdd --reporter spec --exit --timeout 15000",
+    "local-test": "npm run lint && cross-env NODE_ENV=test mocha -u tdd --reporter spec --exit --timeout 15000"
+
   },
   "repository": {
     "type": "git",

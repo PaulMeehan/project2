@@ -40,8 +40,16 @@ if (app.get('env') !== 'development') {
   });
 }
 
+const syncOptions = {
+  force: process.env.FORCE_SYNC === 'true'
+};
+
+if (app.get('env') === 'test') {
+  syncOptions.force = true;
+}
+
 db.sequelize.sync({ force: process.env.FORCE_SYNC === 'true' }).then(() => {
-  if (process.env.FORCE_SYNC === 'true') {
+  if (syncOptions.force || app.get('env') === 'test') {
     // console.log("RUNNIG SEEDS");
     require('./db/seed')(db);
   }
