@@ -34,6 +34,7 @@ $(document).ready(function () {
     query += tags.join(',');
     $.get(query).then(response => {
       console.log(response);
+      $("#inventory-table-div").removeClass("hidden");
       for (let i = 0; i < response.length; i++) {
         let newItem = $('<tr>');
         let store = response[i].Store;
