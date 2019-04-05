@@ -337,7 +337,7 @@ hr {
 }
 
 .fas{
-  color: white;
+  color: #212528;
 }
 
 .view-tags{
@@ -384,3 +384,16 @@ h5{
 #user-update-buttons{
   text-align: center;
 }
+
+#item-search{
+  font-weight: bold;
+}
+
+#Account-details{
+  font-weight: bold;
+}
+
+#shopping-cart{
+  color: #212528;
+}
+
