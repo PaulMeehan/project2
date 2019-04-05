@@ -77,7 +77,7 @@ module.exports = (db, authController) => {
       if (tagIDs) {
         const length = tagIDs.split(',').length;
         //    Literal sequelize query to get all itemIDs containing ALL tags
-        db.sequelize.query(`select inventoryId from (select inventoryId, COUNT(tagId) as myCount  from inventorytag 
+        db.sequelize.query(`select inventoryId from (select inventoryId, COUNT(tagId) as myCount  from InventoryTags 
         where tagId in (${tagIDs}) GROUP BY inventoryId) as temp 
         where myCount = ${length}`, { type: db.sequelize.QueryTypes.SELECT })
           .then(response => {
