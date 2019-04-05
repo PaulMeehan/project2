@@ -16,7 +16,8 @@ module.exports = function (sequelize, DataTypes) {
   Tag.associate = function (models) {
     Tag.belongsToMany(models.Inventory, {
       through: 'InventoryTag',
-      foreignKey: 'tagId'
+      foreignKey: 'tagId',
+      onDelete: 'cascade'
     });
   };
 
