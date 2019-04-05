@@ -34,7 +34,7 @@ $(document).ready(function () {
     query += tags.join(',');
     $.get(query).then(response => {
       console.log(response);
-      $("#inventory-table-div").removeClass("hidden");
+      $('#inventory-table-div').removeClass('invisible');
       for (let i = 0; i < response.length; i++) {
         let newItem = $('<tr>');
         let store = response[i].Store;
@@ -96,7 +96,6 @@ $(document).on('click', '.address', function () {
   let address = $(this).attr('data-address');
   $('#map').attr('src', mapSrc + address);
 });
-
 
 // on click scroll to inventory
 $(document).on('click', function () {
