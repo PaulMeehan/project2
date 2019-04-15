@@ -34,6 +34,10 @@ _store-owner interface_
 6. They also have the option to update products, by simply silling out the required information at the bottom of the table.
 
 
+Google Maps API url:https://developers.google.com/maps/documentation/embed/guide
+
+API console: https://console.developers.google.com/google/maps-apis/api-list?project=shopally&pli=1
+
 
 
 
